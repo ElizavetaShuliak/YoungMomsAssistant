@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace YoungMomsAssistant.Core.DbModels {
+namespace YoungMomsAssistant.Core.Models.DbModels {
     public class Baby {
 
         public int Id { get; set; }

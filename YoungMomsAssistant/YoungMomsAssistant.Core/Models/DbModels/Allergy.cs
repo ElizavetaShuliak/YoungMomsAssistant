@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace YoungMomsAssistant.Core.DbModels {
+namespace YoungMomsAssistant.Core.Models.DbModels {
     public class Allergy {
 
         public int Id { get; set; }

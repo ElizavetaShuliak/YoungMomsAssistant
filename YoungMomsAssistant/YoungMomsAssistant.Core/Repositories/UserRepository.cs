@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
 using YoungMomsAssistant.Core.DbContexts;
-using YoungMomsAssistant.Core.DbModels;
+using YoungMomsAssistant.Core.Models.DbModels;
 
 namespace YoungMomsAssistant.Core.Repositories {
     public class UserRepository : IRepository<User> {
