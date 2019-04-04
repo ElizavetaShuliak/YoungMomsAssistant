@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using YoungMomsAssistant.Core.DbModels;
+using YoungMomsAssistant.Core.Models.DbModels;
 
 namespace YoungMomsAssistant.Core.DbContexts {
     public class AppDbContext : DbContext {

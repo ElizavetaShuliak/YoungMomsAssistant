@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace YoungMomsAssistant.Core.DbModels {
+namespace YoungMomsAssistant.Core.Models.DbModels {
     public class BabyInfo {
 
         public int Id { get; set; }
