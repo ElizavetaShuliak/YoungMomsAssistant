@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace YoungMomsAssistant.Core.Repositories {
@@ -6,6 +8,8 @@ namespace YoungMomsAssistant.Core.Repositories {
         Task<TModel> GetAsync(int id);
 
         Task<List<TModel>> GetAsync();
+
+        Task<TModel> FindAsync(Expression<Func<TModel, bool>> predicate);
 
         Task AddAsync(TModel model);
 

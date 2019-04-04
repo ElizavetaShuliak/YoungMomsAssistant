@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using YoungMomsAssistant.Core.DbContexts;
 using YoungMomsAssistant.Core.Models.DbModels;
@@ -38,5 +40,8 @@ namespace YoungMomsAssistant.Core.Repositories {
             _dbContext.Entry(model).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
+
+        public Task<User> FindAsync(Expression<Func<User, bool>> predicate) 
+            => _users.FirstOrDefaultAsync(predicate);
     }
 }
