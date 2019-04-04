@@ -5,7 +5,7 @@ namespace YoungMomsAssistant.Core.Domain {
     static class Utility {
 
         public static string GetSHA256Hash(string data) {
-            using (SHA256 sha256Hash = SHA256.Create()) {
+            using (var sha256Hash = SHA256.Create()) {
 
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(data));
 
