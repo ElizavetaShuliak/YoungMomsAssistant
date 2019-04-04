@@ -53,7 +53,10 @@
     <Compile Include="Domain\Utility.cs" />
     <Compile Include="Models\DbModels\Allergy.cs" />
     <Compile Include="Models\DbModels\Baby.cs" />
+    <Compile Include="Models\DbModels\BabyDisease.cs" />
     <Compile Include="Models\DbModels\BabyInfo.cs" />
+    <Compile Include="Models\DbModels\BabyVaccination.cs" />
+    <Compile Include="Models\DbModels\Disease.cs" />
     <Compile Include="Models\DbModels\User.cs" />
     <Compile Include="Domain\Users\UserManager.cs" />
     <Compile Include="Migrations\201904031916478_Intial.cs" />
@@ -61,6 +64,7 @@
       <DependentUpon>201904031916478_Intial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DbModels\Vaccination.cs" />
     <Compile Include="Models\DtoModels\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DbModels\Sex.cs" />
