@@ -51,6 +51,10 @@
     <Compile Include="DbContexts\AppDbContext.cs" />
     <Compile Include="Domain\Users\UserUtility\UserUtility.cs" />
     <Compile Include="Domain\Utility.cs" />
+    <Compile Include="Migrations\201904042014412_DiseasesAndVaccinations.cs" />
+    <Compile Include="Migrations\201904042014412_DiseasesAndVaccinations.Designer.cs">
+      <DependentUpon>201904042014412_DiseasesAndVaccinations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DbModels\Allergy.cs" />
     <Compile Include="Models\DbModels\Baby.cs" />
     <Compile Include="Models\DbModels\BabyDisease.cs" />
@@ -78,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904031916478_Intial.resx">
       <DependentUpon>201904031916478_Intial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904042014412_DiseasesAndVaccinations.resx">
+      <DependentUpon>201904042014412_DiseasesAndVaccinations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
