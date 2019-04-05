@@ -67,6 +67,7 @@
     <Compile Include="Models\DbModels\Disease.cs" />
     <Compile Include="Models\DbModels\Image.cs" />
     <Compile Include="Models\DbModels\LifeEvent.cs" />
+    <Compile Include="Models\DbModels\OralCavity.cs" />
     <Compile Include="Models\DbModels\User.cs" />
     <Compile Include="Domain\Users\UserManager.cs" />
     <Compile Include="Migrations\201904031916478_Intial.cs" />
