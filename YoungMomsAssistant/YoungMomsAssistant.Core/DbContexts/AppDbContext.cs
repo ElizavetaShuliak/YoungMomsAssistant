@@ -29,5 +29,7 @@ namespace YoungMomsAssistant.Core.DbContexts {
         public DbSet<Image> Images { get; set; }
 
         public DbSet<LifeEvent> LifeEvents { get; set; }
+
+        public DbSet<OralCavity> OralCavities { get; set; }
     }
 }
