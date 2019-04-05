@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201904051257083_AddImagesAndLifeEvents.Designer.cs">
       <DependentUpon>201904051257083_AddImagesAndLifeEvents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904051324028_AddOralCavities.cs" />
+    <Compile Include="Migrations\201904051324028_AddOralCavities.Designer.cs">
+      <DependentUpon>201904051324028_AddOralCavities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\DbModels\Allergy.cs" />
     <Compile Include="Models\DbModels\Baby.cs" />
     <Compile Include="Models\DbModels\BabyDisease.cs" />
@@ -95,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904051257083_AddImagesAndLifeEvents.resx">
       <DependentUpon>201904051257083_AddImagesAndLifeEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904051324028_AddOralCavities.resx">
+      <DependentUpon>201904051324028_AddOralCavities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
