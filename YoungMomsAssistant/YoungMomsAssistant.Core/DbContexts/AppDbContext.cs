@@ -25,5 +25,9 @@ namespace YoungMomsAssistant.Core.DbContexts {
         public DbSet<Vaccination> Vaccinations { get; set; }
 
         public DbSet<BabyVaccination> BabyVaccinations { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<LifeEvent> LifeEvents { get; set; }
     }
 }
