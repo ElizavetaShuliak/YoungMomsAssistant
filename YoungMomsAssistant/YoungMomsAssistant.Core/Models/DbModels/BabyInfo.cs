@@ -10,9 +10,7 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
         public int Baby_Id { get; set; }
         public Baby Baby { get; set; }
 
-        [ForeignKey("Sex")]
-        public int Sex_Id { get; set; }
-        public Sex Sex { get; set; }
+        public string Sex { get; set; }
 
         [Required]
         public string BloodType { get; set; }
