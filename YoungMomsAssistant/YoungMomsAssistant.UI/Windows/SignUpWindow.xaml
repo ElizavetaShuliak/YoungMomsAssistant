@@ -34,5 +34,13 @@
             Margin="20, 10">
             Sign Up
         </Button>
+        <StackPanel>
+            <Button
+                Margin="20, 10"
+                HorizontalAlignment="Right"
+                Style="{StaticResource MaterialDesignRaisedAccentButton}">
+                Back
+            </Button>
+        </StackPanel>
     </StackPanel>
 </Window>
