@@ -1,0 +1,39 @@
+﻿<Window x:Class="YoungMomsAssistant.UI.Windows.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YoungMomsAssistant.UI.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Height="420" Width="400"
+        ResizeMode="CanMinimize"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <StackPanel Margin="40">
+        <TextBox
+            Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+            Margin="20, 10"
+            materialDesign:HintAssist.Hint="Login or Email">
+        </TextBox>
+        <PasswordBox
+            Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
+            Margin="20, 10"
+            materialDesign:HintAssist.Hint="Password">
+        </PasswordBox>
+        <Button
+            Margin="20, 10">
+            Sign In
+        </Button>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            Margin="20, 10">
+            Sign Up
+        </Button>
+    </StackPanel>
+</Window>
