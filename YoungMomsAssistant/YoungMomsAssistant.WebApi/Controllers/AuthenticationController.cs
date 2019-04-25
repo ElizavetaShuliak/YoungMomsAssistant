@@ -61,11 +61,5 @@ namespace YoungMomsAssistant.WebApi.Controllers {
                 return BadRequest();
             }
         }
-
-        [HttpGet]
-        [Authorize]
-        public string[] Get() {
-            return new string[] { "Auth", "Hura" };
-        }
     }
 }
