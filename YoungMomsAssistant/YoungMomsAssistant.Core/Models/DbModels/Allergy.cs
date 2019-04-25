@@ -9,6 +9,6 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Baby> Babies { get; set; }
+        public ICollection<BabyAllergy> BabyAllergies { get; set; }
     }
 }

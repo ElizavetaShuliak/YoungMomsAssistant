@@ -13,6 +13,6 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
 
         public string PasswordHash { get; set; }
 
-        public ICollection<Baby> Babies { get; set; }
+        public ICollection<UserBaby> Babies { get; set; }
     }
 }

@@ -1,11 +1,9 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.EntityFrameworkCore;
 using YoungMomsAssistant.Core.Models.DbModels;
 
 namespace YoungMomsAssistant.Core.DbContexts {
     public class AppDbContext : DbContext {
-
-        public AppDbContext()
-            : base("name=DefaultConnection") {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {
         }
 
         public DbSet<Baby> Babies { get; set; }
@@ -29,5 +27,9 @@ namespace YoungMomsAssistant.Core.DbContexts {
         public DbSet<LifeEvent> LifeEvents { get; set; }
 
         public DbSet<OralCavity> OralCavities { get; set; }
+
+        public DbSet<BabyAllergy> BabyAllergies { get; set; }
+
+        public DbSet<UserBaby> UserBabies { get; set; }
     }
 }

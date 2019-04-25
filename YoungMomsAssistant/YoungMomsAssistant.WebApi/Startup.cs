@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using YoungMomsAssistant.Core.DbContexts;
+using YoungMomsAssistant.Core.Domain.Users;
+using YoungMomsAssistant.Core.Models.DbModels;
+using YoungMomsAssistant.Core.Repositories;
+using YoungMomsAssistant.WebApi.Configuration.Extensions;
 
 namespace YoungMomsAssistant.WebApi {
     public class Startup {
+
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
@@ -21,6 +21,15 @@ namespace YoungMomsAssistant.WebApi {
 
         public void ConfigureServices(IServiceCollection services) {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCustomJwtAuth();
+            services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<IUserManager, UserManager>();
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    sqlOptions => sqlOptions.MigrationsAssembly("YoungMomsAssistant.WebApi")
+                );
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
@@ -31,6 +40,7 @@ namespace YoungMomsAssistant.WebApi {
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
