@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace YoungMomsAssistant.UI.Windows {
+namespace YoungMomsAssistant.UI.Views.Windows {
     /// <summary>
     /// Interaction logic for SignUpWindow.xaml
     /// </summary>
