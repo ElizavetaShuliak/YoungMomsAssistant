@@ -12,7 +12,7 @@ namespace YoungMomsAssistant.UI.Infrastructure.Commands {
         private readonly Predicate<T> _canExecute;
 
         public RelayCommand(Action<T> execute, Predicate<T> canExecute = null) {
-            _execute = execute;
+            _execute = execute ?? throw new NullReferenceException("execute");
             _canExecute = canExecute;
         }
 
