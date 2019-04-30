@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace YoungMomsAssistant.UI.Models {
-    class User : INotifyPropertyChanged {
+    class User : ModelBase {
 
         private string _login;
         private string _email;
@@ -36,11 +36,5 @@ namespace YoungMomsAssistant.UI.Models {
                 OnPropertyChanged();
             }
         }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "") {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
