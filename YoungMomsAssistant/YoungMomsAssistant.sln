@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28516.95
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoungMomsAssistant.Core", "YoungMomsAssistant.Core\YoungMomsAssistant.Core.csproj", "{E8ECD792-87B6-4739-B6FA-4B93485F1B57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoungMomsAssistant.WebApi", "YoungMomsAssistant.WebApi\YoungMomsAssistant.WebApi.csproj", "{91CF7807-81CE-4D36-8CCE-36E97AB16EB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoungMomsAssistant.Core", "YoungMomsAssistant.Core\YoungMomsAssistant.Core.csproj", "{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoungMomsAssistant.UI", "YoungMomsAssistant.UI\YoungMomsAssistant.UI.csproj", "{76E562F1-9D63-49D2-8274-E3E7967B5BDA}"
 EndProject
@@ -13,10 +15,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E8ECD792-87B6-4739-B6FA-4B93485F1B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8ECD792-87B6-4739-B6FA-4B93485F1B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8ECD792-87B6-4739-B6FA-4B93485F1B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8ECD792-87B6-4739-B6FA-4B93485F1B57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91CF7807-81CE-4D36-8CCE-36E97AB16EB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91CF7807-81CE-4D36-8CCE-36E97AB16EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91CF7807-81CE-4D36-8CCE-36E97AB16EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91CF7807-81CE-4D36-8CCE-36E97AB16EB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU

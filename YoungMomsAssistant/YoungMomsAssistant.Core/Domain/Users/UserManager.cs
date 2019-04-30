@@ -5,7 +5,7 @@ using YoungMomsAssistant.Core.Models.DtoModels;
 using YoungMomsAssistant.Core.Repositories;
 
 namespace YoungMomsAssistant.Core.Domain.Users {
-    public class UserManager {
+    public class UserManager : IUserManager {
 
         private IRepository<User> _userRepo;
 
@@ -13,20 +13,24 @@ namespace YoungMomsAssistant.Core.Domain.Users {
             _userRepo = userRepository;
         }
 
-        public async Task<User> LoginAsync(string loginOrEmail, string password) {
+        public async Task<UserDto> AuthUserAsync(UserDto userDto) {
             var userToLogin = await _userRepo
-                .FindAsync(user => user.Email == loginOrEmail || user.Login == loginOrEmail);
+                .FindAsync(user => user.Email == userDto.Email || user.Login == userDto.Login);
 
-            return userToLogin?.PasswordHash == UserUtility.GetPasswordHash(password) 
-                ? userToLogin : null;
+            return userToLogin?.PasswordHash != UserUtility.GetPasswordHash(userDto.Password) 
+                ? null : new UserDto {
+                    Login = userDto.Login,
+                    Email = userDto.Email,
+                    Password = userDto.Password
+                };
         }
 
-        public async Task<User> RegisterAsync(UserDto userDto) {
+        public async Task<bool> RegisterAsync(UserDto userDto) {
             var oldUser = await _userRepo
                 .FindAsync(user => user.Email == userDto.Email || user.Login == userDto.Login);
 
             if (oldUser != null) {
-                return null;
+                return false;
             }
 
             await _userRepo.AddAsync(new User {
@@ -35,9 +39,7 @@ namespace YoungMomsAssistant.Core.Domain.Users {
                 PasswordHash = UserUtility.GetPasswordHash(userDto.Password)
             });
 
-            // temp
-            return await _userRepo
-                .FindAsync(user => user.Email == userDto.Email && user.Login == userDto.Login);
+            return true;
         }
     }
 }

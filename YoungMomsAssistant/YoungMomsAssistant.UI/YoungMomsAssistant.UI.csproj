@@ -115,11 +115,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\YoungMomsAssistant.Core\YoungMomsAssistant.Core.csproj">
-      <Project>{e8ecd792-87b6-4739-b6fa-4b93485f1b57}</Project>
-      <Name>YoungMomsAssistant.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
