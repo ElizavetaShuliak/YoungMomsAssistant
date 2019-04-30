@@ -16,8 +16,8 @@ namespace YoungMomsAssistant.UI.Views.Windows {
     /// <summary>
     /// Interaction logic for AuthorizationWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window {
-        public SignInWindow() {
+    public partial class AuthorizationWindow : Window {
+        public AuthorizationWindow() {
             InitializeComponent();
         }
     }
