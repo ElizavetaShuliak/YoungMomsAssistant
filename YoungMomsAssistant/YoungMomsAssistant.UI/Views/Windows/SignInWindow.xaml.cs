@@ -11,13 +11,14 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YoungMomsAssistant.UI.Services;
 
 namespace YoungMomsAssistant.UI.Views.Windows {
     /// <summary>
     /// Interaction logic for AuthorizationWindow.xaml
     /// </summary>
-    public partial class AuthorizationWindow : Window {
-        public AuthorizationWindow() {
+    public partial class SignInWindow : Window {
+        public SignInWindow() {
             InitializeComponent();
         }
     }
