@@ -37,7 +37,7 @@ namespace YoungMomsAssistant.UI.Models {
             }
         }
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "") {
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
