@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace YoungMomsAssistant.Core.Domain.Users.JWT {
+namespace YoungMomsAssistant.WebApi.Services.JWT {
     public class SigningSymmetricKey : IJwtSigningDecodingKey, IJwtSigningEncodingKey {
 
         public SigningSymmetricKey(string key) {

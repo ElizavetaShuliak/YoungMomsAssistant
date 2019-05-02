@@ -19,8 +19,8 @@ namespace YoungMomsAssistant.Core.Domain.Users {
 
             return userToLogin?.PasswordHash != UserUtility.GetPasswordHash(userDto.Password) 
                 ? null : new UserDto {
-                    Login = userDto.Login,
-                    Email = userDto.Email,
+                    Login = userToLogin.Login,
+                    Email = userToLogin.Email,
                     Password = userDto.Password
                 };
         }
