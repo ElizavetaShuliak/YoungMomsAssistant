@@ -47,8 +47,9 @@
                 Sign In
             </Button>
             <Button
-            Style="{StaticResource MaterialDesignRaisedAccentButton}"
-            Margin="20, 10">
+                Style="{StaticResource MaterialDesignRaisedAccentButton}"
+                Margin="20, 10"
+                Command="{Binding SignUpWindowOpenCommand}">
                 Sign Up
             </Button>
         </StackPanel>

@@ -26,13 +26,17 @@ namespace YoungMomsAssistant.UI.Services {
             }
         }
 
-        public async Task SignUpAsync(User user) {
-            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Authentication/SignOut";
+        public async Task<bool> SignUpAsync(User user) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Authentication/SignUp";
 
             using (var request = new HttpClient()) {
                 var result = await request.PostWithJsonBodyAsync(url, user);
 
-                if (result.StatusCode != HttpStatusCode.OK) {
+                if(result.StatusCode == HttpStatusCode.OK) {
+                    // TODO: Improve it
+                    return true;
+                }
+                else {
                     // TODO: another exception for wrong user data
                     throw new NotOkResponseException(((int)result.StatusCode).ToString());
                 }

@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Windows.Input;
 using YoungMomsAssistant.UI.Infrastructure.Commands;
 using YoungMomsAssistant.UI.Infrastructure.Exceptions;
@@ -24,6 +25,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             _authorizationTokensService = authorizationTokensService;
 
             SignInCommand = new RelayCommand(SignInCommandExecute, SignInCommandCanExecute);
+            SignUpWindowOpenCommand = new RelayCommand(SignUpWindowOpenCommandExecute);
         }
 
         public SignInModel SignInModel {
@@ -84,7 +86,13 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 && string.IsNullOrWhiteSpace(SignInModel.Error);
         }
 
+        private void SignUpWindowOpenCommandExecute(object obj) {
+            _windowsService.NavigateToSignUpWindow(ClosableWindow);
+        }
+
         public ICommand SignInCommand { get; }
+
+        public ICommand SignUpWindowOpenCommand { get; }
 
         #endregion
     }
