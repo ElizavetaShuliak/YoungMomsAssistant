@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YoungMomsAssistant.UI.Views.Windows"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Height="420" Width="400"
         ResizeMode="CanMinimize"
@@ -15,25 +15,42 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <StackPanel Margin="40">
-        <TextBox
+    <md:DialogHost Identifier="dialogHost">
+        <StackPanel Margin="40">
+            <TextBox
             Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
             Margin="20, 10"
-            materialDesign:HintAssist.Hint="Login or Email">
-        </TextBox>
-        <PasswordBox
+            md:HintAssist.Hint="Login or Email"
+            DataContext="{Binding SignInModel}">
+                <TextBox.Text>
+                    <Binding Path="LoginOrEmail" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <PasswordBox
+            x:Name="passwordPb"
             Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
             Margin="20, 10"
-            materialDesign:HintAssist.Hint="Password">
-        </PasswordBox>
-        <Button
-            Margin="20, 10">
-            Sign In
-        </Button>
-        <Button
+            md:HintAssist.Hint="Password"
+            PasswordChanged="PasswordPb_PasswordChanged">
+            </PasswordBox>
+            <Button
+            Style="{StaticResource MaterialDesignRaisedButton}"
+            md:ButtonProgressAssist.Value="-1"
+            md:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSignInWaiting, UpdateSourceTrigger=PropertyChanged}"
+            md:ButtonProgressAssist.IsIndeterminate="True"
+            Margin="20, 10"
+            Command="{Binding SignInCommand}">
+                Sign In
+            </Button>
+            <Button
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
             Margin="20, 10">
-            Sign Up
-        </Button>
-    </StackPanel>
+                Sign Up
+            </Button>
+        </StackPanel>
+    </md:DialogHost>
 </Window>

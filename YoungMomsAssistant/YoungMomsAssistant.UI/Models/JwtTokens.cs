@@ -1,6 +1,5 @@
-﻿namespace YoungMomsAssistant.WebApi.Models.DtoModels {
-    public class TokensDto {
-
+﻿namespace YoungMomsAssistant.UI.Models {
+    public class JwtTokens {
         public string Token { get; set; }
 
         public string RefreshToken { get; set; }

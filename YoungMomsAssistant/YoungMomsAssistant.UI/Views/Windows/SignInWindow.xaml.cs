@@ -1,25 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using YoungMomsAssistant.UI.Services;
+﻿using System.Windows;
+using Unity;
+using YoungMomsAssistant.UI.ViewModels;
 
 namespace YoungMomsAssistant.UI.Views.Windows {
     /// <summary>
     /// Interaction logic for AuthorizationWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window {
+    public partial class SignInWindow : Window, IClosable {
         public SignInWindow() {
             InitializeComponent();
+        }
+
+        [Dependency]
+        public SignInViewModel ViewModel {
+            set {
+                value.ClosableWindow = this;
+                DataContext = value;
+            }
+        }
+
+        private void PasswordPb_PasswordChanged(object sender, RoutedEventArgs e) {
+            if (DataContext is SignInViewModel vm) {
+                vm.SignInModel.Password = passwordPb.Password;
+            }
         }
     }
 }

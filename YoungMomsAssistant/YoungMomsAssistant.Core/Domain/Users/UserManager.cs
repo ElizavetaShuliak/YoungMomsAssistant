@@ -17,7 +17,7 @@ namespace YoungMomsAssistant.Core.Domain.Users {
             var userToLogin = await _userRepo
                 .FindAsync(user => user.Email == userDto.Email || user.Login == userDto.Login);
 
-            return userToLogin?.PasswordHash != UserUtility.GetPasswordHash(userDto.Password) 
+            return userToLogin?.PasswordHash != UserUtility.GetPasswordHash(userDto.Password)
                 ? null : new UserDto {
                     Login = userToLogin.Login,
                     Email = userToLogin.Email,

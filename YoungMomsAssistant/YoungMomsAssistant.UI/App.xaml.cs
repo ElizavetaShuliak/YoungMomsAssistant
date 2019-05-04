@@ -1,15 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Unity;
+using YoungMomsAssistant.UI.Services;
+using YoungMomsAssistant.UI.Views.Windows;
 
 namespace YoungMomsAssistant.UI {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application {
+        protected override void OnStartup(StartupEventArgs e) {
+            var container = new UnityContainer();
+
+            container.AddExtension(new Diagnostic());
+
+            container.RegisterType<IAuthenticationService, AuthenticationService>();
+            container.RegisterSingleton<IAuthorizationTokensService, AuthorizationTokensService>();
+
+            container.RegisterType<MainWindow>();
+            container.RegisterType<SignInWindow>();
+            container.RegisterType<SignUpWindow>();
+
+            container.RegisterInstance(new WindowsService(
+                () => container.Resolve<MainWindow>(),
+                () => container.Resolve<SignInWindow>(),
+                () => container.Resolve<SignUpWindow>()
+            ));
+
+            var signInWindow = container.Resolve<SignInWindow>();
+            signInWindow.Show();
+        }
     }
 }

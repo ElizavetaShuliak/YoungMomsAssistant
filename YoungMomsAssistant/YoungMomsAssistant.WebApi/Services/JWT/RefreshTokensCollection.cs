@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 
 namespace YoungMomsAssistant.WebApi.Services.JWT {
     public class RefreshTokensCollection : IRefreshTokensCollection {

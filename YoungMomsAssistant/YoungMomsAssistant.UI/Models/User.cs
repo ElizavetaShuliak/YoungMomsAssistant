@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YoungMomsAssistant.UI.Models {
-    class User : ModelBase {
+﻿namespace YoungMomsAssistant.UI.Models {
+    public class User : ModelBase {
 
         private string _login;
         private string _email;

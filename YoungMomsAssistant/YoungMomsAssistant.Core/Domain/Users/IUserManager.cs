@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using YoungMomsAssistant.Core.Models.DbModels;
 using YoungMomsAssistant.Core.Models.DtoModels;
 
 namespace YoungMomsAssistant.Core.Domain.Users {

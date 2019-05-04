@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace YoungMomsAssistant.UI.Infrastructure.Commands {
-    class RelayCommand<T> : ICommand {
+    class RelayCommand : ICommand {
 
-        private readonly Action<T> _execute;
-        private readonly Predicate<T> _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Predicate<object> _canExecute;
 
-        public RelayCommand(Action<T> execute, Predicate<T> canExecute = null) {
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null) {
             _execute = execute ?? throw new NullReferenceException("execute");
             _canExecute = canExecute;
         }
@@ -22,19 +18,11 @@ namespace YoungMomsAssistant.UI.Infrastructure.Commands {
         }
 
         public bool CanExecute(object parameter) {
-            if (parameter.GetType() != typeof(T)) {
-                throw new ArgumentException("parameter");
-            }
-
-            return _canExecute?.Invoke((T)parameter) ?? true;
+            return _canExecute?.Invoke(parameter) ?? true;
         }
 
         public void Execute(object parameter) {
-            if (parameter.GetType() != typeof(T)) {
-                throw new ArgumentException("parameter");
-            }
-
-            _execute?.Invoke((T)parameter);
+            _execute?.Invoke(parameter);
         }
     }
 }

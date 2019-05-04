@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using YoungMomsAssistant.WebApi.Services.JWT;
 using YoungMomsAssistant.WebApi.Constants;
+using YoungMomsAssistant.WebApi.Services.JWT;
 
 namespace YoungMomsAssistant.WebApi.Configuration.Extensions {
     public static class ServiceCollectionExtensions {
@@ -43,6 +43,6 @@ namespace YoungMomsAssistant.WebApi.Configuration.Extensions {
                 });
 
             return services;
-        } 
+        }
     }
 }

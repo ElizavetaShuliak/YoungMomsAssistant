@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using YoungMomsAssistant.Core.Domain.Users;
 using YoungMomsAssistant.Core.Models.DtoModels;
-using YoungMomsAssistant.WebApi.Constants;
 using YoungMomsAssistant.WebApi.Models.DtoModels;
 using YoungMomsAssistant.WebApi.Services.JWT;
 
@@ -20,7 +16,7 @@ namespace YoungMomsAssistant.WebApi.Controllers {
         private IUserManager _userManager;
         private IRefreshTokensCollection _refreshTokensCollection;
         public AuthenticationController(
-            IUserManager userManager, 
+            IUserManager userManager,
             IRefreshTokensCollection refreshTokensCollection) {
             _userManager = userManager;
             _refreshTokensCollection = refreshTokensCollection;
@@ -43,9 +39,9 @@ namespace YoungMomsAssistant.WebApi.Controllers {
             });
         }
 
-        [HttpPost("SignOut")]
+        [HttpPost("SignUp")]
         [AllowAnonymous]
-        public async Task<ActionResult> SignOutAsync([FromBody] UserDto userDto) {
+        public async Task<ActionResult> SignUpAsync([FromBody] UserDto userDto) {
             var result = await _userManager.RegisterAsync(userDto);
 
             if (result) {
@@ -59,7 +55,7 @@ namespace YoungMomsAssistant.WebApi.Controllers {
         [HttpPost("RefreshToken")]
         [AllowAnonymous]
         public ActionResult RefreshToken(
-            [FromBody] TokensDto tokensDto, 
+            [FromBody] TokensDto tokensDto,
             [FromServices] IJwtService jwtService) {
 
             var principal = jwtService.GetPrincipalFromExpiredToken(tokensDto.Token);
@@ -70,11 +66,11 @@ namespace YoungMomsAssistant.WebApi.Controllers {
             var savedRefreshToken = _refreshTokensCollection.Get(email);
 
             if (savedRefreshToken != tokensDto.RefreshToken) {
-                throw new SecurityTokenException("refreshToken");
+                return BadRequest();
             }
 
             return Ok(new TokensDto {
-                Token = jwtService.GenerateToken(new UserDto { Email = email}),
+                Token = jwtService.GenerateToken(new UserDto { Email = email }),
                 RefreshToken = _refreshTokensCollection.Generate(email)
             });
         }

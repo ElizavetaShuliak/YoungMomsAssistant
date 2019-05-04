@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YoungMomsAssistant.Core.Models.DtoModels {
+﻿namespace YoungMomsAssistant.Core.Models.DtoModels {
     public class UserDto {
 
         public string Login { get; set; }
