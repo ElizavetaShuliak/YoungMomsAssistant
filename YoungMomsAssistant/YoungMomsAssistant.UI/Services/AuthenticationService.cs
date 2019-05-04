@@ -32,7 +32,7 @@ namespace YoungMomsAssistant.UI.Services {
             using (var request = new HttpClient()) {
                 var result = await request.PostWithJsonBodyAsync(url, user);
 
-                if(result.StatusCode == HttpStatusCode.OK) {
+                if (result.StatusCode == HttpStatusCode.OK) {
                     // TODO: Improve it
                     return true;
                 }
