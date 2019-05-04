@@ -9,7 +9,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
         private IRepository<User> _userInfoRepo;
         private IRepository<Baby> _babyRepo;
         private IRepository<BabyInfo> _babyInfoRepo;
-    
+
         public BabyManager(
             IRepository<User> userRepository,
             IRepository<Baby> babyRepository,

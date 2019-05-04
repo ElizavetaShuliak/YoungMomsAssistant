@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoungMomsAssistant.WebApi",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoungMomsAssistant.Core", "YoungMomsAssistant.Core\YoungMomsAssistant.Core.csproj", "{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoungMomsAssistant.UI", "YoungMomsAssistant.UI\YoungMomsAssistant.UI.csproj", "{76E562F1-9D63-49D2-8274-E3E7967B5BDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{563DB8C1-8112-4741-8C17-5A51C8B2E0D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E562F1-9D63-49D2-8274-E3E7967B5BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

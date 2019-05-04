@@ -41,7 +41,7 @@ namespace YoungMomsAssistant.Core.Repositories {
             await _dbContext.SaveChangesAsync();
         }
 
-        public Task<User> FindAsync(Expression<Func<User, bool>> predicate) 
+        public Task<User> FindAsync(Expression<Func<User, bool>> predicate)
             => _users.FirstOrDefaultAsync(predicate);
     }
 }

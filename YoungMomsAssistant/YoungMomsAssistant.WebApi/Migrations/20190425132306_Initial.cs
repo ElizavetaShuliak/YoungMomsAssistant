@@ -1,106 +1,89 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace YoungMomsAssistant.WebApi.Migrations
-{
-    public partial class Initial : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace YoungMomsAssistant.WebApi.Migrations {
+    public partial class Initial : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Allergies",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Allergies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Babies",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(maxLength: 255, nullable: false),
                     LastName = table.Column<string>(maxLength: 255, nullable: false),
                     BirthDay = table.Column<DateTime>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Babies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Diseases",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 255, nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Diseases", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Images",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Source = table.Column<byte[]>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Images", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Login = table.Column<string>(maxLength: 255, nullable: true),
                     Email = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Vaccinations",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(maxLength: 255, nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Vaccinations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BabyAllergies",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
                     Allery_Id = table.Column<int>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyAllergies", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyAllergies_Allergies_Allery_Id",
@@ -118,8 +101,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BabyInfos",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
@@ -128,8 +110,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                     CurrentGrowth = table.Column<float>(nullable: false),
                     CurrentWeight = table.Column<float>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyInfos", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyInfos_Babies_Baby_Id",
@@ -141,15 +122,13 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "OralCavities",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
                     TeethsBitField = table.Column<long>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_OralCavities", x => x.Id);
                     table.ForeignKey(
                         name: "FK_OralCavities_Babies_Baby_Id",
@@ -161,8 +140,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BabyDiseases",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
@@ -170,8 +148,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                     Begin = table.Column<DateTime>(nullable: false),
                     End = table.Column<DateTime>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyDiseases", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyDiseases_Babies_Baby_Id",
@@ -189,8 +166,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "LifeEvents",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(maxLength: 255, nullable: false),
@@ -198,8 +174,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                     User_Id = table.Column<int>(nullable: false),
                     Image_Id = table.Column<int>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_LifeEvents", x => x.Id);
                     table.ForeignKey(
                         name: "FK_LifeEvents_Images_Image_Id",
@@ -217,15 +192,13 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserBabies",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     User_Id = table.Column<int>(nullable: false),
                     Baby_Id = table.Column<int>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_UserBabies", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserBabies_Babies_Baby_Id",
@@ -243,16 +216,14 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BabyVaccinations",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
                     Vaccination_Id = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyVaccinations", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyVaccinations_Babies_Baby_Id",
@@ -329,8 +300,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                 column: "User_Id");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "BabyAllergies");
 

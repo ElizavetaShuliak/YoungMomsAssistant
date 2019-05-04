@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 
-namespace YoungMomsAssistant.Core.Domain.Users.JWT {
+namespace YoungMomsAssistant.WebApi.Services.JWT {
     public interface IJwtSigningEncodingKey {
         string SigningAlgorithm { get; }
 
