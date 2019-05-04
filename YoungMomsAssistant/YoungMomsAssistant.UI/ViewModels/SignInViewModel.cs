@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Windows.Input;
 using YoungMomsAssistant.UI.Infrastructure.Commands;
 using YoungMomsAssistant.UI.Infrastructure.Exceptions;
