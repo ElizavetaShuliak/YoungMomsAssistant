@@ -11,9 +11,5 @@ namespace YoungMomsAssistant.Core.Models.DtoModels {
         public string Sex { get; set; }
 
         public string BloodType { get; set; }
-
-        public float CurrentGrowth { get; set; }
-
-        public float CurrentWeight { get; set; }
     }
 }

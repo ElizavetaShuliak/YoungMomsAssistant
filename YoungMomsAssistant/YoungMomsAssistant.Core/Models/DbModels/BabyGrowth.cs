@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YoungMomsAssistant.Core.Models.DbModels {
-    public class BabyInfo {
+    public class BabyGrowth {
 
         public int Id { get; set; }
 
@@ -10,9 +10,8 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
         public int Baby_Id { get; set; }
         public Baby Baby { get; set; }
 
-        public string Sex { get; set; }
+        public DateTime Date { get; set; }
 
-        [Required]
-        public string BloodType { get; set; }
+        public double Growth { get; set; }
     }
 }

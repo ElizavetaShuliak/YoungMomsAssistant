@@ -38,8 +38,6 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var babyInfo = new BabyInfo {
                 Baby = baby,
                 BloodType = babyDto.BloodType,
-                CurrentWeight = babyDto.CurrentWeight,
-                CurrentGrowth = babyDto.CurrentGrowth,
                 Sex = babyDto.Sex
             };
 
