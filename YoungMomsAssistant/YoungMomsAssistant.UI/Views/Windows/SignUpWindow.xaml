@@ -14,55 +14,57 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <StackPanel Margin="40">
-        <TextBox
+    <md:DialogHost Identifier="dialogHost">
+        <StackPanel Margin="40">
+            <TextBox
             Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
             Margin="20, 10"
             md:HintAssist.Hint="Login"
             DataContext="{Binding UserData}">
-            <TextBox.Text>
-                <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox
+                <TextBox.Text>
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <TextBox
             Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
             Margin="20, 10"
             md:HintAssist.Hint="Email"
             DataContext="{Binding UserData}">
-            <TextBox.Text>
-                <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <PasswordBox
+                <TextBox.Text>
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <PasswordBox
             x:Name="passwordPb"
             Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
             Margin="20, 10"
             md:HintAssist.Hint="Password"
             PasswordChanged="PasswordBox_PasswordChanged">
-        </PasswordBox>
-        <Button
+            </PasswordBox>
+            <Button
             Style="{StaticResource MaterialDesignRaisedButton}"
             md:ButtonProgressAssist.Value="-1"
             md:ButtonProgressAssist.IsIndicatorVisible="{Binding IsSignUpWaiting, UpdateSourceTrigger=PropertyChanged}"
             md:ButtonProgressAssist.IsIndeterminate="True"
             Margin="20, 10"
             Command="{Binding SignUpCommand}">
-            Sign Up
-        </Button>
-        <Button
+                Sign Up
+            </Button>
+            <Button
             Margin="20, 10"
             HorizontalAlignment="Right"
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
             Command="{Binding BackToSignInCommand}">
-            Back
-        </Button>
-    </StackPanel>
+                Back
+            </Button>
+        </StackPanel>
+    </md:DialogHost>
 </Window>
