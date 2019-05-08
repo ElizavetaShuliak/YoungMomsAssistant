@@ -18,6 +18,12 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
         [Required]
         public DateTime BirthDay { get; set; }
 
+        [Required]
+        public string Sex { get; set; }
+
+        [Required]
+        public string BloodType { get; set; }
+
         public ICollection<UserBaby> Users { get; set; }
 
         public ICollection<BabyAllergy> BabyAllergies { get; set; }
