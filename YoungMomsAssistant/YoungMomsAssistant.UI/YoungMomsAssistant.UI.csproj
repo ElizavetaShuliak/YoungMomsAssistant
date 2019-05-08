@@ -91,6 +91,7 @@
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IAuthorizationTokensService.cs" />
     <Compile Include="Services\WindowsService.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
