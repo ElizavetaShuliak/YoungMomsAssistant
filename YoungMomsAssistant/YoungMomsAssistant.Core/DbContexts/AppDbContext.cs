@@ -10,8 +10,6 @@ namespace YoungMomsAssistant.Core.DbContexts {
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<BabyInfo> BabyInfos { get; set; }
-
         public DbSet<Allergy> Allergies { get; set; }
 
         public DbSet<Disease> Diseases { get; set; }

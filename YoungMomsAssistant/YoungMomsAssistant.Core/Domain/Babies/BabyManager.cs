@@ -6,42 +6,23 @@ using YoungMomsAssistant.Core.Repositories;
 namespace YoungMomsAssistant.Core.Domain.Babies {
     public class BabyManager {
 
-        private IRepository<User> _userInfoRepo;
         private IRepository<Baby> _babyRepo;
-        private IRepository<BabyInfo> _babyInfoRepo;
 
         public BabyManager(
-            IRepository<User> userRepository,
-            IRepository<Baby> babyRepository,
-            IRepository<BabyInfo> babyInfoRepository) {
-            _userInfoRepo = userRepository;
+            IRepository<Baby> babyRepository) {
             _babyRepo = babyRepository;
-            _babyInfoRepo = babyInfoRepository;
         }
 
-        public async Task AddNewBabyAsync(BabyDto babyDto, UserDto userDto) {
-            var userDb = await _userInfoRepo
-                .FindAsync(user => user.Email == user.Email);
-
-            if (userDb == null) {
-                return;
-            }
-
+        public async Task AddNewBabyAsync(BabyDto babyDto) {
             var baby = new Baby {
                 FirstName = babyDto.FirstName,
                 LastName = babyDto.LastName,
-                BirthDay = babyDto.BirthDay
-            };
-
-            await _babyRepo.AddAsync(baby);
-
-            var babyInfo = new BabyInfo {
-                Baby = baby,
+                BirthDay = babyDto.BirthDay,
                 BloodType = babyDto.BloodType,
                 Sex = babyDto.Sex
             };
 
-            await _babyInfoRepo.AddAsync(babyInfo);
+            await _babyRepo.AddAsync(baby);
         }
     }
 }
