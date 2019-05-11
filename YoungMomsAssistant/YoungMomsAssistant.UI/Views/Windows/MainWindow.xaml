@@ -3,10 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:YoungMomsAssistant.UI.Views.Windows"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Height="450" Width="800">
+    <md:DialogHost Identifier="dialogHost">
+        <DockPanel>
+            <md:ColorZone 
+                Padding="16"
+                md:ShadowAssist.ShadowDepth="Depth2"
+                Mode="PrimaryMid"
+                DockPanel.Dock="Top">
+                <DockPanel>
+                    <Button
+                        Style="{DynamicResource MaterialDesignFlatButton}"
+                        Foreground="White"
+                        DockPanel.Dock="Right">
+                        Sign Out
+                    </Button>
+                    <TextBlock
+                        FontSize="20"
+                        VerticalAlignment="Center">
+                        Young Moms Assistant
+                    </TextBlock>
+                </DockPanel>
+            </md:ColorZone>
+            <ContentControl></ContentControl>
+        </DockPanel>    
+    </md:DialogHost>
 </Window>
