@@ -28,6 +28,7 @@
                     </TextBlock>
                 </DockPanel>
             </md:ColorZone>
+            <ContentControl></ContentControl>
         </DockPanel>    
     </md:DialogHost>
 </Window>
