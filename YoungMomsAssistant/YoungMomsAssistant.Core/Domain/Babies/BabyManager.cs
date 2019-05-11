@@ -1,19 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using YoungMomsAssistant.Core.Models.DbModels;
 using YoungMomsAssistant.Core.Models.DtoModels;
 using YoungMomsAssistant.Core.Repositories;
 
 namespace YoungMomsAssistant.Core.Domain.Babies {
-    public class BabyManager {
+    public class BabyManager : IBabyManager {
 
-        private IRepository<Baby> _babyRepo;
+        private IRepository<Baby> _babiesRepo;
+        private IRepository<User> _usersRepo;
 
         public BabyManager(
-            IRepository<Baby> babyRepository) {
-            _babyRepo = babyRepository;
+            IRepository<Baby> babiesRepository,
+            IRepository<User> usersRepository) {
+            _babiesRepo = babiesRepository;
+            _usersRepo = usersRepository;
         }
 
-        public async Task AddNewBabyAsync(BabyDto babyDto) {
+        public async Task AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal) {
+            var email = claimsPrincipal.Claims
+                .FirstOrDefault(claim => claim.Type == ClaimTypes.Email)?.Value;
+
+            var owner = await _usersRepo.FindAsync(user => user.Email == email)
+                ?? throw new ArgumentException("claimsPrincipal");
+
             var baby = new Baby {
                 FirstName = babyDto.FirstName,
                 LastName = babyDto.LastName,
@@ -22,7 +35,30 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 Sex = babyDto.Sex
             };
 
-            await _babyRepo.AddAsync(baby);
+            baby.Users = new List<UserBaby> { new UserBaby {
+                Baby = baby,
+                User = owner
+            } };
+
+            await _babiesRepo.AddAsync(baby);
+        }
+
+        public async Task<IEnumerable<BabyDto>> GetBabiesByUserAsync(ClaimsPrincipal claimsPrincipal) {
+            var email = claimsPrincipal.Claims
+                .FirstOrDefault(claim => claim.Type == ClaimTypes.Email)?.Value;
+
+            var owner = await _usersRepo.FindAsync(user => user.Email == email)
+                ?? throw new ArgumentException("claimsPrincipal");
+
+            return (await _babiesRepo
+                .FindAllAsync(baby => baby.Users.FirstOrDefault(ub => ub.Baby_Id == baby.Id && ub.User_Id == owner.Id) != null))
+                .Select(baby => new BabyDto {
+                    FirstName = baby.FirstName,
+                    LastName = baby.LastName,
+                    BirthDay = baby.BirthDay,
+                    BloodType = baby.BloodType,
+                    Sex = baby.Sex
+                });
         }
     }
 }

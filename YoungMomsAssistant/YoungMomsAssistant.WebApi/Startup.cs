@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using YoungMomsAssistant.Core.DbContexts;
+using YoungMomsAssistant.Core.Domain.Babies;
 using YoungMomsAssistant.Core.Domain.Users;
 using YoungMomsAssistant.Core.Models.DbModels;
 using YoungMomsAssistant.Core.Repositories;
@@ -23,7 +24,9 @@ namespace YoungMomsAssistant.WebApi {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCustomJwtAuth();
             services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<IRepository<Baby>, BabyRepository>();
             services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IBabyManager, BabyManager>();
             services.AddDbContext<AppDbContext>(options => {
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection"),

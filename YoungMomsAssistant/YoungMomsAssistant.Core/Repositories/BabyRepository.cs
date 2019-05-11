@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using YoungMomsAssistant.Core.DbContexts;
@@ -42,6 +43,9 @@ namespace YoungMomsAssistant.Core.Repositories {
         }
 
         public Task<Baby> FindAsync(Expression<Func<Baby, bool>> predicate)
-            => _babies.FirstOrDefaultAsync(predicate);
+            => _babies.Include("Users").FirstOrDefaultAsync(predicate);
+
+        public Task<List<Baby>> FindAllAsync(Expression<Func<Baby, bool>> predicate) 
+            => _babies.Include("Users").Where(predicate).ToListAsync();
     }
 }
