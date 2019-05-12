@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace YoungMomsAssistant.UI.Services {
     public class RequestJwtTokensDecorator : IRequestJwtTokensDecorator {
 
-        AuthorizationTokensService _authorizationTokensService;
+        IAuthorizationTokensService _authorizationTokensService;
 
-        public RequestJwtTokensDecorator(AuthorizationTokensService authorizationTokensService) {
+        public RequestJwtTokensDecorator(IAuthorizationTokensService authorizationTokensService) {
             _authorizationTokensService = authorizationTokensService;
         }
 

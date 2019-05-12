@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using YoungMomsAssistant.UI.Views.CustomControls;
 
 namespace YoungMomsAssistant.UI.Services {
     public class TemplatesNavigationService : INotifyPropertyChanged {
@@ -14,10 +15,8 @@ namespace YoungMomsAssistant.UI.Services {
         private int _currentTemplateIndex;
         private UserControl _currentTemplate;
 
-        public TemplatesNavigationService(UserControl homeTemplate) {
-            _navigationList = new List<UserControl> {
-                homeTemplate
-            };
+        public TemplatesNavigationService() {
+            _navigationList = new List<UserControl>();
         }
 
         public UserControl CurrentTemplate {
@@ -45,6 +44,19 @@ namespace YoungMomsAssistant.UI.Services {
         public bool CanNavigateBack() => _currentTemplateIndex > 0;
 
         public bool CanNavigateForward() => _currentTemplateIndex < _navigationList.Count;
+
+        #region Templates to navigate to
+
+        [Unity.Dependency]
+        public Func<AllBabiesControl> AllBabiesControlFactory { get; set; }
+
+        public void NavigateToAllBabies() {
+            CurrentTemplate = AllBabiesControlFactory?.Invoke();
+
+            //
+        }
+
+        #endregion
 
         virtual protected void OnPropertyChanged([CallerMemberName] string propertyName = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

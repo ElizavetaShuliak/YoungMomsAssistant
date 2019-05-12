@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Unity;
 using YoungMomsAssistant.UI.Services;
+using YoungMomsAssistant.UI.Views.CustomControls;
 using YoungMomsAssistant.UI.Views.Windows;
 
 namespace YoungMomsAssistant.UI {
@@ -15,6 +16,8 @@ namespace YoungMomsAssistant.UI {
 
             container.RegisterType<IAuthenticationService, AuthenticationService>();
             container.RegisterSingleton<IAuthorizationTokensService, AuthorizationTokensService>();
+            container.RegisterSingleton<IRequestJwtTokensDecorator, RequestJwtTokensDecorator>();
+            container.RegisterSingleton<IBabiesService, BabiesService>();
 
             container.RegisterType<MainWindow>();
             container.RegisterType<SignInWindow>();
@@ -25,6 +28,8 @@ namespace YoungMomsAssistant.UI {
                 () => container.Resolve<SignInWindow>(),
                 () => container.Resolve<SignUpWindow>()
             ));
+
+            container.RegisterInstance(container.Resolve<TemplatesNavigationService>());
 
             var signInWindow = container.Resolve<SignInWindow>();
             signInWindow.Show();

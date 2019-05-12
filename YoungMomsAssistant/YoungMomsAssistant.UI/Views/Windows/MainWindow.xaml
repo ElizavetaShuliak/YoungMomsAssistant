@@ -28,7 +28,7 @@
                     </TextBlock>
                 </DockPanel>
             </md:ColorZone>
-            <ContentControl></ContentControl>
+            <ContentControl Content="{Binding NavigationService.CurrentTemplate}"></ContentControl>
         </DockPanel>    
     </md:DialogHost>
 </Window>

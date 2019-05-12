@@ -74,6 +74,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\RegexConstants.cs" />
+    <Compile Include="Services\IBabiesService.cs" />
+    <Compile Include="ViewModels\AllBabiesViewModel.cs" />
+    <Compile Include="Views\CustomControls\AllBabiesControl.xaml.cs">
+      <DependentUpon>AllBabiesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\ErrorDialogContent.xaml.cs">
       <DependentUpon>ErrorDialogContent.xaml</DependentUpon>
     </Compile>
@@ -105,6 +110,10 @@
     <Compile Include="Views\Windows\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\CustomControls\AllBabiesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\ErrorDialogContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
