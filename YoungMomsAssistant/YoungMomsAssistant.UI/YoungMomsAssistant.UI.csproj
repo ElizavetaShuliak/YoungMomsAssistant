@@ -79,17 +79,22 @@
     </Compile>
     <Compile Include="Infrastructure\Commands\Generic\RelayCommand.cs" />
     <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
+    <Compile Include="Infrastructure\Exceptions\AuthorizationException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotOkResponseException.cs" />
     <Compile Include="Infrastructure\Extensions\HttpClientExtansions.cs" />
     <Compile Include="Infrastructure\Extensions\RegexExtansions.cs" />
+    <Compile Include="Models\Baby.cs" />
     <Compile Include="Models\JwtTokens.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AuthorizationTokensService.cs" />
+    <Compile Include="Services\BabiesService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IAuthorizationTokensService.cs" />
+    <Compile Include="Services\IRequestJwtTokensDecorator.cs" />
+    <Compile Include="Services\RequestJwtTokensDecorator.cs" />
     <Compile Include="Services\TemplatesNavigationService.cs" />
     <Compile Include="Services\WindowsService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
