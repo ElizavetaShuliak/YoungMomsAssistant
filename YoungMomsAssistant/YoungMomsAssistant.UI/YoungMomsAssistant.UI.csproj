@@ -74,7 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\RegexConstants.cs" />
-    <Compile Include="CustomControls\ErrorDialogContent.xaml.cs">
+    <Compile Include="Views\CustomControls\ErrorDialogContent.xaml.cs">
       <DependentUpon>ErrorDialogContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Commands\Generic\RelayCommand.cs" />
@@ -105,7 +105,7 @@
     <Compile Include="Views\Windows\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomControls\ErrorDialogContent.xaml">
+    <Page Include="Views\CustomControls\ErrorDialogContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

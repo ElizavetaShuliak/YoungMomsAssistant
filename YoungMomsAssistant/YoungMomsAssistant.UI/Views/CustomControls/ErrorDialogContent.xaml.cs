@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace YoungMomsAssistant.UI.CustomControls {
+namespace YoungMomsAssistant.UI.Views.CustomControls {
     /// <summary>
     /// Interaction logic for ErrorDialogContent.xaml
     /// </summary>
