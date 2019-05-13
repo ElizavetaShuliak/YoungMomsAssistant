@@ -6,5 +6,6 @@ namespace YoungMomsAssistant.UI.Services {
     public interface IBabiesService {
         Task AddAsync(Baby baby);
         Task<List<Baby>> GetAllAsync();
+        Task UpdateAsync(Baby baby);
     }
 }

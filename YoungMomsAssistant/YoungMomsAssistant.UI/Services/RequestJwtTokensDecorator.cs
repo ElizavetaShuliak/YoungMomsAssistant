@@ -52,6 +52,25 @@ namespace YoungMomsAssistant.UI.Services {
             }
         }
 
+        public async Task<HttpResponseMessage> PutAsync<TBody>(string url, TBody body) {
+            using (var httpClient = new HttpClient()) {
+                var jsonRequestString = JsonConvert.SerializeObject(body);
+                var content = new StringContent(jsonRequestString, Encoding.UTF8, "application/json");
+                AddAuthorizationHeader(httpClient);
+
+                var result = await httpClient.PutAsync(url, content);
+
+                if (result.StatusCode != System.Net.HttpStatusCode.Unauthorized) {
+                    return result;
+                }
+                else {
+                    await _authorizationTokensService.RefreshTokenAsync();
+                    AddAuthorizationHeader(httpClient);
+                    return await httpClient.PutAsync(url, content);
+                }
+            }
+        }
+
         private void AddAuthorizationHeader(HttpClient httpClient)
             => httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", _authorizationTokensService.Tokens.Token);

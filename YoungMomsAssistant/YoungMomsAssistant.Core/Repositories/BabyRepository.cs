@@ -36,9 +36,7 @@ namespace YoungMomsAssistant.Core.Repositories {
         public async Task<List<Baby>> GetAsync() => await _babies.ToListAsync();
 
         public async Task UpdateAsync(Baby model) {
-            _babies.Attach(model);
-
-            _dbContext.Entry(model).State = EntityState.Modified;
+            _babies.Update(model);
             await _dbContext.SaveChangesAsync();
         }
 

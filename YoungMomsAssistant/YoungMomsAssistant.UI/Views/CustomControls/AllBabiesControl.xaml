@@ -18,128 +18,127 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <md:DialogHost Identifier="dialogHost">
-        <WrapPanel>
-            <ListBox ItemsSource="{Binding Babies}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <md:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
-                            <md:Flipper.FrontContent>
-                                <Grid Width="200" Height="256">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="160" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <md:ColorZone VerticalAlignment="Stretch" Mode="PrimaryLight">
-                                        <md:PackIcon
-                                            Width="128"
-                                            Height="128"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Kind="AccountCircle" />
-                                    </md:ColorZone>
-                                    <StackPanel
-                                        Grid.Row="1"
+    <WrapPanel>
+        <ListBox ItemsSource="{Binding Babies}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <md:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+                        <md:Flipper.FrontContent>
+                            <Grid Width="200" Height="256">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="160" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <md:ColorZone VerticalAlignment="Stretch" Mode="PrimaryLight">
+                                    <md:PackIcon
+                                        Width="128"
+                                        Height="128"
                                         HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-                                        <StackPanel
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <TextBlock Margin="0,0,2,0" Text="{Binding Path=FirstName}" />
-                                            <TextBlock Margin="2,0,0,0" Text="{Binding Path=LastName}" />
-                                        </StackPanel>
-                                        <Button
-                                            Margin="0,4,0,0"
-                                            Command="{x:Static md:Flipper.FlipCommand}"
-                                            Style="{StaticResource MaterialDesignFlatButton}">
-                                            Details
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </md:Flipper.FrontContent>
-                            <md:Flipper.BackContent>
-                                <Grid Width="200" Height="256">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <md:ColorZone Padding="6" Mode="Accent">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button
-                                                HorizontalAlignment="Left"
-                                                Command="{x:Static md:Flipper.FlipCommand}"
-                                                Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                                <md:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
-                                            </Button>
-                                            <TextBlock Margin="8,0,0,0" VerticalAlignment="Center">
-                                                Baby's Details
-                                            </TextBlock>
-                                        </StackPanel>
-                                    </md:ColorZone>
-                                    <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                                        <StackPanel
-                                            Margin="10,0"
-                                            HorizontalAlignment="Stretch"
-                                            Orientation="Vertical">
-                                            <TextBox
-                                                md:HintAssist.Hint="First name"
-                                                md:HintAssist.IsFloating="True"
-                                                FontSize="14"
-                                                Text="{Binding Path=FirstName}" />
-                                            <TextBox
-                                                md:HintAssist.Hint="Last name"
-                                                md:HintAssist.IsFloating="True"
-                                                FontSize="14"
-                                                Text="{Binding Path=LastName}" />
-                                        </StackPanel>
-                                        <Grid Margin="10,0,10,10">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel
-                                                Grid.Column="0"
-                                                Margin="0,0,10,0"
-                                                Orientation="Vertical">
-                                                <TextBox
-                                                    md:HintAssist.Hint="Blood type"
-                                                    md:HintAssist.IsFloating="True"
-                                                    FontSize="14"
-                                                    Text="{Binding Path=BloodType}" />
-                                                <TextBox
-                                                    md:HintAssist.Hint="Sex"
-                                                    md:HintAssist.IsFloating="True"
-                                                    FontSize="14"
-                                                    Text="{Binding Path=Sex}" />
-                                            </StackPanel>
-                                            <DatePicker
-                                                Grid.Column="1"
-                                                Margin="10,0,0,0"
-                                                VerticalAlignment="Bottom"
-                                                md:HintAssist.Hint="Pick Date"
-                                                SelectedDate="{Binding Path=BirthDay}"
-                                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                                        </Grid>
+                                        VerticalAlignment="Center"
+                                        Kind="AccountCircle" />
+                                </md:ColorZone>
+                                <StackPanel
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                                    <StackPanel
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <TextBlock Margin="0,0,2,0" Text="{Binding Path=FirstName}" />
+                                        <TextBlock Margin="2,0,0,0" Text="{Binding Path=LastName}" />
                                     </StackPanel>
                                     <Button
-                                        Grid.Row="2"
-                                        HorizontalAlignment="Center"
+                                        Margin="0,4,0,0"
+                                        Command="{x:Static md:Flipper.FlipCommand}"
                                         Style="{StaticResource MaterialDesignFlatButton}">
-                                        Update
+                                        Details
                                     </Button>
-                                </Grid>
-                            </md:Flipper.BackContent>
-                        </md:Flipper>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </WrapPanel>
-    </md:DialogHost>
+                                </StackPanel>
+                            </Grid>
+                        </md:Flipper.FrontContent>
+                        <md:Flipper.BackContent>
+                            <Grid Width="200" Height="256">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <md:ColorZone Padding="6" Mode="Accent">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            HorizontalAlignment="Left"
+                                            Command="{x:Static md:Flipper.FlipCommand}"
+                                            Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                            <md:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
+                                        </Button>
+                                        <TextBlock Margin="8,0,0,0" VerticalAlignment="Center">
+                                            Baby's Details
+                                        </TextBlock>
+                                    </StackPanel>
+                                </md:ColorZone>
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                                    <StackPanel
+                                        Margin="10,0"
+                                        HorizontalAlignment="Stretch"
+                                        Orientation="Vertical">
+                                        <TextBox
+                                            md:HintAssist.Hint="First name"
+                                            md:HintAssist.IsFloating="True"
+                                            FontSize="14"
+                                            Text="{Binding Path=FirstName}" />
+                                        <TextBox
+                                            md:HintAssist.Hint="Last name"
+                                            md:HintAssist.IsFloating="True"
+                                            FontSize="14"
+                                            Text="{Binding Path=LastName}" />
+                                    </StackPanel>
+                                    <Grid Margin="10,0,10,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel
+                                            Grid.Column="0"
+                                            Margin="0,0,10,0"
+                                            Orientation="Vertical">
+                                            <TextBox
+                                                md:HintAssist.Hint="Blood type"
+                                                md:HintAssist.IsFloating="True"
+                                                FontSize="14"
+                                                Text="{Binding Path=BloodType}" />
+                                            <TextBox
+                                                md:HintAssist.Hint="Sex"
+                                                md:HintAssist.IsFloating="True"
+                                                FontSize="14"
+                                                Text="{Binding Path=Sex}" />
+                                        </StackPanel>
+                                        <DatePicker
+                                            Grid.Column="1"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Bottom"
+                                            md:HintAssist.Hint="Pick Date"
+                                            SelectedDate="{Binding Path=BirthDay}"
+                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                    </Grid>
+                                </StackPanel>
+                                <Button
+                                    Grid.Row="2"
+                                    HorizontalAlignment="Center"
+                                    Click="UpdateDabyDetails_Click"
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+                                    Update
+                                </Button>
+                            </Grid>
+                        </md:Flipper.BackContent>
+                    </md:Flipper>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </WrapPanel>
 </UserControl>

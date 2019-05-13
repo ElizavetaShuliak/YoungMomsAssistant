@@ -2,6 +2,8 @@
 
 namespace YoungMomsAssistant.Core.Models.DtoModels {
     public class BabyDto {
+        public int Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

@@ -12,6 +12,8 @@ namespace YoungMomsAssistant.UI.Models {
         private string _sex;
         private string _bloodType;
 
+        public int Id { get; set; }
+
         public string FirstName {
             get => _firstName;
             set {

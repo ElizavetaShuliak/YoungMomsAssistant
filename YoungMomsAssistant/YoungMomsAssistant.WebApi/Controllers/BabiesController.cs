@@ -35,5 +35,13 @@ namespace YoungMomsAssistant.WebApi.Controllers {
 
             return Ok();
         }
+
+        [HttpPut("Update")]
+        [Authorize]
+        public async Task<ActionResult> Update([FromBody] BabyDto babyDto) {
+            await _babyManager.UpdateBabyAsync(babyDto, HttpContext.User);
+
+            return Ok();
+        }
     }
 }

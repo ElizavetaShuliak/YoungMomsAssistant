@@ -6,14 +6,17 @@ namespace YoungMomsAssistant.UI.Views.Windows {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window, IClosable {
         public MainWindow() {
             InitializeComponent();
         }
 
         [Dependency]
         public MainViewModel ViewModel {
-            set => DataContext = value;
+            set {
+                value.ClosableWindow = this;
+                DataContext = value;
+            }
         }
     }
 }
