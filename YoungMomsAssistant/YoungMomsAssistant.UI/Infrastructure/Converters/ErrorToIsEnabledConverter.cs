@@ -9,6 +9,10 @@ using System.Windows.Data;
 namespace YoungMomsAssistant.UI.Infrastructure.Converters {
     public class ErrorToIsEnabledConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+            if (value == null) {
+                return true;
+            }
+
             var error = value as string ?? throw new ArgumentException("value");
 
             return string.IsNullOrWhiteSpace(error);

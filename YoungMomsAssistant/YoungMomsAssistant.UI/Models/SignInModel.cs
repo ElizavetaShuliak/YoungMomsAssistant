@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using YoungMomsAssistant.UI.Constants;
 using YoungMomsAssistant.UI.Infrastructure.Extensions;
@@ -8,7 +9,6 @@ namespace YoungMomsAssistant.UI.Models {
 
         private string _loginOrEmail;
         private string _password;
-        private string _lastError;
 
         public string LoginOrEmail {
             get => _loginOrEmail;
@@ -26,7 +26,7 @@ namespace YoungMomsAssistant.UI.Models {
             }
         }
 
-        public string Error => _lastError;
+        public string Error => _errors.Values.FirstOrDefault(e => !string.IsNullOrWhiteSpace(e));
 
         public string this[string columnName] {
             get {
@@ -38,6 +38,10 @@ namespace YoungMomsAssistant.UI.Models {
                             && !RegexExtansions.IsMatchEmail(LoginOrEmail)) {
                             // TODO: Move to constants/localization
                             error = "error";
+                            _errors["LoginOrEmail"] = error;
+                        }
+                        else {
+                            _errors["LoginOrEmail"] = null;
                         }
 
                         break;
@@ -45,12 +49,14 @@ namespace YoungMomsAssistant.UI.Models {
                         if (!RegexExtansions.IsMatchPassword(Password)) {
                             // TODO: Move to constants/localization
                             error = "error";
+                            _errors["Password"] = error;
+                        }
+                        else {
+                            _errors["Password"] = null;
                         }
 
                         break;
                 }
-
-                _lastError = error;
                 return error;
             }
         }

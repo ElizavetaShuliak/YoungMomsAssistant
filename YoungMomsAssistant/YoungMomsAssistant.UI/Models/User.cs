@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using YoungMomsAssistant.UI.Infrastructure.Extensions;
 
 namespace YoungMomsAssistant.UI.Models {
@@ -7,7 +8,6 @@ namespace YoungMomsAssistant.UI.Models {
         private string _login;
         private string _email;
         private string _password;
-        private string _lastError;
 
         public string Login {
             get => _login;
@@ -33,6 +33,8 @@ namespace YoungMomsAssistant.UI.Models {
             }
         }
 
+        public string Error => _errors.Values.FirstOrDefault(e => !string.IsNullOrWhiteSpace(e));
+
         public string this[string columnName] {
             get {
                 var error = string.Empty;
@@ -41,27 +43,37 @@ namespace YoungMomsAssistant.UI.Models {
                         if (!RegexExtansions.IsMatchLogin(Login)) {
                             // TODO: Move to constants/localization
                             error = "error";
+                            _errors["Login"] = error;
+                        }
+                        else {
+                            _errors["Login"] = null;
                         }
                         break;
                     case "Email":
                         if (!RegexExtansions.IsMatchEmail(Email)) {
                             // TODO: Move to constants/localization
                             error = "error";
+                            _errors["Email"] = error;
+                        }
+                        else {
+                            _errors["Email"] = null;
                         }
                         break;
                     case "Password":
                         if (!RegexExtansions.IsMatchPassword(Password)) {
                             // TODO: Move to constants/localization
                             error = "error";
+                            _errors["Password"] = error;
+                        }
+                        else {
+                            _errors["Password"] = null;
                         }
                         break;
                 }
 
-                _lastError = error;
                 return error;
             }
         }
 
-        public string Error => _lastError;
     }
 }

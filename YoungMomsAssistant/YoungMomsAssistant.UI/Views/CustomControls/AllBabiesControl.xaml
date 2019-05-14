@@ -154,7 +154,7 @@
                                     Grid.Row="2"
                                     HorizontalAlignment="Center"
                                     Click="UpdateDabyDetails_Click"
-                                    IsEnabled="{Binding Error, Converter={StaticResource ErrorToIsEnabledConverter}}"
+                                    IsEnabled="{Binding Error, Converter={StaticResource ErrorToIsEnabledConverter}, UpdateSourceTrigger=PropertyChanged}"
                                     Style="{StaticResource MaterialDesignFlatButton}">
                                     Update
                                 </Button>

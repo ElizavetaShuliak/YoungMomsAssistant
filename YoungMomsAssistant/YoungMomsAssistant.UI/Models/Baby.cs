@@ -14,8 +14,6 @@ namespace YoungMomsAssistant.UI.Models {
         private string _sex;
         private string _bloodType;
 
-        private string _lastError;
-
         public int Id { get; set; }
 
         public string FirstName {
@@ -66,23 +64,30 @@ namespace YoungMomsAssistant.UI.Models {
                     case "FirstName":
                         if (!RegexExtansions.IsMatchName(FirstName)) {
                             error = "error";
+                            _errors["FirstName"] = error;
+                        }
+                        else {
+                            _errors["FirstName"] = null;
                         }
                         break;
                     case "LastName":
                         if (!RegexExtansions.IsMatchName(LastName)) {
                             error = "error";
+                            _errors["LastName"] = error;
+                        }
+                        else {
+                            _errors["LastName"] = null;
                         }
                         break;
                 }
-
-                return Error = error;
+                Error = "";
+                return error;
             }
         }
 
         public string Error {
-            get => _lastError;
+            get => _errors.Values.FirstOrDefault(e => !string.IsNullOrWhiteSpace(e));
             set {
-                _lastError = value;
                 OnPropertyChanged();
             }
         }
