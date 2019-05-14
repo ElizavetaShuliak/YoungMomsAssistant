@@ -75,8 +75,12 @@
     </ApplicationDefinition>
     <Compile Include="Constants\RegexConstants.cs" />
     <Compile Include="Infrastructure\Converters\ErrorToIsEnabledConverter.cs" />
+    <Compile Include="Models\LifeEvent.cs" />
     <Compile Include="Services\IBabiesService.cs" />
+    <Compile Include="Services\ILifeEventsService.cs" />
+    <Compile Include="Services\LifeEventsService.cs" />
     <Compile Include="ViewModels\AllBabiesViewModel.cs" />
+    <Compile Include="ViewModels\LifeEventsViewModel.cs" />
     <Compile Include="Views\CustomControls\AllBabiesControl.xaml.cs">
       <DependentUpon>AllBabiesControl.xaml</DependentUpon>
     </Compile>
@@ -107,6 +111,9 @@
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\CustomControls\LifeEventsControl.xaml.cs">
+      <DependentUpon>LifeEventsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ICloseable.cs" />
     <Compile Include="Views\Windows\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
@@ -116,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomControls\ErrorDialogContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\LifeEventsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

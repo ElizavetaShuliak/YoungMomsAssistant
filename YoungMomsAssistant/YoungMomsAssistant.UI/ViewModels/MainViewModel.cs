@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using YoungMomsAssistant.UI.Infrastructure.Commands;
+using YoungMomsAssistant.UI.Infrastructure.Commands.Generic;
 using YoungMomsAssistant.UI.Services;
 
 namespace YoungMomsAssistant.UI.ViewModels {
@@ -19,6 +20,8 @@ namespace YoungMomsAssistant.UI.ViewModels {
             NavigationService = navigationService;
 
             SignOutCommand = new RelayCommand(SignOutCommandExecute);
+            OpenLifeEventsCommand = new RelayCommand(OpenLifeEventsCommandExecute);
+            NavigateCommand = new RelayCommand<string>(NavigateCommandExecute, NavigateCommandCanExecute);
 
             NavigationService.NavigateToAllBabies();
             _windowsService = windowsService;
@@ -32,7 +35,39 @@ namespace YoungMomsAssistant.UI.ViewModels {
             _windowsService.NaviagteToSignInWindow(ClosableWindow);
         }
 
-        public ICommand SignOutCommand { get;}
+        private void OpenLifeEventsCommandExecute(object obj) {
+            NavigationService.NavigateToLifeEvents();
+        }
+
+        private void NavigateCommandExecute(string obj) {
+            switch (obj) {
+                case "back":
+                    NavigationService.NavigateBack();
+                    break;
+                case "forward":
+                    NavigationService.NavigateForward();
+                    break;
+                case "home":
+                    NavigationService.NavigateToAllBabies();
+                    break;
+            }
+        }
+
+        private bool NavigateCommandCanExecute(string obj) {
+            switch (obj) {
+                case "back":
+                    return NavigationService.CanNavigateBack();
+                case "forward":
+                    return NavigationService.CanNavigateForward();
+                default: return true;
+            }
+        }
+
+        public ICommand SignOutCommand { get; }
+
+        public ICommand OpenLifeEventsCommand { get; }
+
+        public ICommand NavigateCommand { get; }
 
         #endregion
     }

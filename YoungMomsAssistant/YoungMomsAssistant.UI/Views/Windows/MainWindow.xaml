@@ -24,11 +24,31 @@
                         Style="{DynamicResource MaterialDesignFlatButton}">
                         Sign Out
                     </Button>
+                    <Button
+                        Command="{Binding OpenLifeEventsCommand}"
+                        DockPanel.Dock="Right"
+                        Foreground="White"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                        Life Events
+                    </Button>
                     <TextBlock VerticalAlignment="Center" FontSize="20">
                         Young Moms Assistant
                     </TextBlock>
                 </DockPanel>
             </md:ColorZone>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="back">
+                        <md:PackIcon Kind="ArrowLeft" />
+                    </Button>
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="forward">
+                        <md:PackIcon Kind="ArrowRight" />
+                    </Button>
+                    <Button Command="{Binding NavigateCommand}" CommandParameter="home">
+                        <md:PackIcon Kind="HomeOutline" />
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
             <ContentControl Content="{Binding NavigationService.CurrentTemplate}" />
         </DockPanel>
     </md:DialogHost>

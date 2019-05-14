@@ -16,6 +16,7 @@ namespace YoungMomsAssistant.UI {
 
             container.RegisterType<IAuthenticationService, AuthenticationService>();
             container.RegisterSingleton<IAuthorizationTokensService, AuthorizationTokensService>();
+            container.RegisterSingleton<ILifeEventsService, LifeEventsService>();
             container.RegisterSingleton<IRequestJwtTokensDecorator, RequestJwtTokensDecorator>();
             container.RegisterSingleton<IBabiesService, BabiesService>();
 

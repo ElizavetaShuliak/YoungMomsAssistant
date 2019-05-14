@@ -18,7 +18,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
         private ObservableCollection<Baby> _babies;
         private Baby _babyToAdd;
 
-        private bool _isUpdateListComlete;
+        private bool _isUpdateListComplete;
 
         private TemplatesNavigationService _navigationService;
         private WindowsService _windowsService;
@@ -64,10 +64,10 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public bool IsUpdateListComlete {
-            get => _isUpdateListComlete;
+        public bool IsUpdateListComplete {
+            get => _isUpdateListComplete;
             set {
-                _isUpdateListComlete = value;
+                _isUpdateListComplete = value;
                 OnPropertyChanged();
             }
         }
@@ -119,7 +119,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private async void UpdateListCommandExecute(object obj) {
             try {
-                IsUpdateListComlete = false;
+                IsUpdateListComplete = false;
                 var result = await _babiesService.GetAllAsync();
                 Babies = new ObservableCollection<Baby>(result);
             }
@@ -137,7 +137,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
             }
             finally {
-                IsUpdateListComlete = true;
+                IsUpdateListComplete = true;
             }
         }
 
