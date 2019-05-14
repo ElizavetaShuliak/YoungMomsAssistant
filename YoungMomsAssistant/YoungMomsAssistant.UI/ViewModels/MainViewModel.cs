@@ -32,6 +32,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
         #region Commands
 
         private void SignOutCommandExecute(object obj) {
+            NavigationService.ClearNavigationList();
             _windowsService.NaviagteToSignInWindow(ClosableWindow);
         }
 

@@ -45,6 +45,11 @@ namespace YoungMomsAssistant.UI.Services {
 
         public bool CanNavigateForward() => _currentTemplateIndex < _navigationList.Count - 1;
 
+        public void ClearNavigationList() {
+            _navigationList.Clear();
+            CurrentTemplate = null;
+        }
+
         #region Templates to navigate to
 
         [Unity.Dependency]
