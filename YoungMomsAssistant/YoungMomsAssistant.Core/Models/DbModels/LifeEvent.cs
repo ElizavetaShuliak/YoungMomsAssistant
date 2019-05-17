@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YoungMomsAssistant.Core.Models.DbModels {
@@ -11,6 +12,8 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
 
         [MaxLength(1000)]
         public string Summary { get; set; }
+
+        public DateTime Date { get; set; }
 
         [ForeignKey("User")]
         public int User_Id { get; set; }

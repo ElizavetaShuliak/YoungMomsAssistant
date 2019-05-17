@@ -33,6 +33,22 @@ namespace YoungMomsAssistant.UI.Services {
             }
         }
 
+        public async Task<List<LifeEvent>> GetByDateAsync(DateTime date) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/{date.Day}/{date.Month}/{date.Year}}";
+            var result = await _requestJwtTokensDecorator.GetAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.OK) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<LifeEvent>>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotOkResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
         public async Task AddAsync(LifeEvent lifeEvent) {
             var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/Add";
             var result = await _requestJwtTokensDecorator.PostAsync(url, lifeEvent);

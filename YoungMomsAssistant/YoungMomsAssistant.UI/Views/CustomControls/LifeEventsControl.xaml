@@ -64,6 +64,7 @@
                                     FontSize="20"
                                     Text="{Binding Title}"
                                     TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Date}" />
                                 <ScrollViewer Height="80" VerticalScrollBarVisibility="Auto">
                                     <TextBlock
                                         FontSize="13"
@@ -96,7 +97,7 @@
                     TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
                     <Expander Header="Select By Date">
                         <md:Card DockPanel.Dock="Top">
-                            <Calendar md:ShadowAssist.ShadowDepth="Depth2" />
+                            <Calendar md:ShadowAssist.ShadowDepth="Depth2" SelectedDate="{Binding SelectedDate}" />
                         </md:Card>
                     </Expander>
                     <Expander Header="Add New">
@@ -150,6 +151,20 @@
                                             </Binding>
                                         </TextBox.Text>
                                     </TextBox>
+                                    <DatePicker
+                                        Width="100"
+                                        HorizontalAlignment="Right"
+                                        md:HintAssist.Hint="Pick Date"
+                                        DataContext="{Binding LifeEventToAdd}"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="Date" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
                                     <Grid Margin="0,20,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="50*" />
@@ -234,6 +249,20 @@
                                             </Binding>
                                         </TextBox.Text>
                                     </TextBox>
+                                    <DatePicker
+                                        Width="100"
+                                        HorizontalAlignment="Right"
+                                        md:HintAssist.Hint="Pick Date"
+                                        DataContext="{Binding LifeEventToAdd}"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="Date" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
                                     <Grid Margin="0,20,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="50*" />

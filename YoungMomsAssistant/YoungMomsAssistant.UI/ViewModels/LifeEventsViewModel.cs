@@ -76,6 +76,8 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
+        public DateTime SelectedDate { get; set; }
+
         public string ImageToAddPath {
             get => _imageToAddPath;
             set {
@@ -192,7 +194,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
         private async void UpdateListCommandExecute(object obj) {
             try {
                 IsUpdateListComplete = false;
-                var result = await _lifeEventsService.GetAllAsync();
+                var result = await _lifeEventsService.GetByDateAsync(SelectedDate);
                 LifeEvents = new ObservableCollection<LifeEvent>(result);
             }
             catch (NotOkResponseException ex) {

@@ -59,6 +59,20 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
                 });
         }
 
+        public async Task<IEnumerable<LifeEventDto>> GetLifeEventsByDateAsync(ClaimsPrincipal claimsPrincipal, DateTime date) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            return (await _LifeEventsRepo
+                .FindAllAsync(lifeEvent => lifeEvent.User_Id == owner.Id && lifeEvent.Date.Date == date.Date))
+                .Select(lifeEvent => new LifeEventDto {
+                    Id = lifeEvent.Id,
+                    Title = lifeEvent.Title,
+                    Summary = lifeEvent.Summary,
+                    Image = lifeEvent.Image.Source
+                });
+        }
+
         public async Task UpdateLifeEventAsync(LifeEventDto lifeEventDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);

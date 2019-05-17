@@ -11,6 +11,7 @@ namespace YoungMomsAssistant.UI.Models {
         private byte[] _image;
         private string _title;
         private string _summary;
+        private DateTime? _date;
 
         public int Id { get; set; }
 
@@ -26,6 +27,14 @@ namespace YoungMomsAssistant.UI.Models {
             get => _summary;
             set {
                 _summary = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime? Date {
+            get => _date;
+            set {
+                _date = value;
                 OnPropertyChanged();
             }
         }
@@ -74,6 +83,15 @@ namespace YoungMomsAssistant.UI.Models {
                         }
                         else {
                             _errors["Image"] = null;
+                        }
+                        break;
+                    case "Date":
+                        if (Date == null) {
+                            error = "error";
+                            _errors["Date"] = error;
+                        }
+                        else {
+                            _errors["Date"] = null;
                         }
                         break;
                 }

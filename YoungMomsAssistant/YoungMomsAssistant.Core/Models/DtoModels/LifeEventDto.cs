@@ -10,6 +10,8 @@ namespace YoungMomsAssistant.Core.Models.DtoModels {
 
         public string Summary { get; set; }
 
+        public DateTime Date { get; set; }
+
         public bool IsImageChanged { get; set; }
 
         public byte[] Image { get; set; }

@@ -27,6 +27,14 @@ namespace YoungMomsAssistant.WebApi.Controllers {
             return Ok(babies);
         }
 
+        [HttpGet("{day}/{month}/{year}")]
+        [Authorize]
+        public async Task<ActionResult> Get(int day, int month, int year) {
+            var babies = await _lifeEventManager.GetLifeEventsByDateAsync(HttpContext.User, new DateTime(year, month, day));
+
+            return Ok(babies);
+        }
+
         [HttpPost("Add")]
         [Authorize]
         public async Task<ActionResult> Add([FromBody] LifeEventDto lifeEventDto) {

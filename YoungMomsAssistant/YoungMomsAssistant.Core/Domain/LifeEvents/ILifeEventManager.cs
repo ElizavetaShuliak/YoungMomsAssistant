@@ -6,6 +6,7 @@ using YoungMomsAssistant.Core.Models.DtoModels;
 namespace YoungMomsAssistant.Core.Domain.LifeEvents {
     public interface ILifeEventManager {
         Task AddNewLifeEventAsync(LifeEventDto lifeEventDto, ClaimsPrincipal claimsPrincipal);
+        Task<IEnumerable<LifeEventDto>> GetLifeEventsByDateAsync(ClaimsPrincipal claimsPrincipal, System.DateTime date);
         Task<IEnumerable<LifeEventDto>> GetLifeEventsByUserAsync(ClaimsPrincipal claimsPrincipal);
         Task UpdateLifeEventAsync(LifeEventDto lifeEventDto, ClaimsPrincipal claimsPrincipal);
     }
