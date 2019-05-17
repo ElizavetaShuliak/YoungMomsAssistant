@@ -16,7 +16,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <cv:ErrorToIsEnabledConverter x:Key="ErrorToIsEnabledConverter" />
+            <cv:ErrorToIsEnabledConvert x:Key="ErrorToIsEnabledConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
 

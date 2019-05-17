@@ -74,7 +74,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\RegexConstants.cs" />
-    <Compile Include="Infrastructure\Converters\ErrorToIsEnabledConverter.cs" />
+    <Compile Include="Infrastructure\Converters\BytesToImageConvert.cs" />
+    <Compile Include="Infrastructure\Converters\ErrorToIsEnabledConvert.cs" />
+    <Compile Include="Infrastructure\Converters\NullToFalseConvert.cs" />
     <Compile Include="Models\LifeEvent.cs" />
     <Compile Include="Services\IBabiesService.cs" />
     <Compile Include="Services\ILifeEventsService.cs" />

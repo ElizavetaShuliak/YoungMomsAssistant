@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Unity;
+using YoungMomsAssistant.UI.Models;
 using YoungMomsAssistant.UI.ViewModels;
 
 namespace YoungMomsAssistant.UI.Views.CustomControls {
@@ -26,7 +27,20 @@ namespace YoungMomsAssistant.UI.Views.CustomControls {
 
         [Dependency]
         public LifeEventsViewModel ViewModel {
+            get => DataContext as LifeEventsViewModel;
             set => DataContext = value;
+        }
+
+        private void EditLifeEvent_Click(object sender, RoutedEventArgs e) {
+            if ((sender as Button)?.DataContext is LifeEvent lifeEvent) {
+                ViewModel.LifeEventToEdit = new LifeEvent {
+                    Id = lifeEvent.Id,
+                    Image = lifeEvent.Image.Clone() as byte[],
+                    Summary = lifeEvent.Summary,
+                    Title = lifeEvent.Title
+                };
+                editExpander.IsExpanded = mainExpander.IsExpanded = true;
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace YoungMomsAssistant.UI.Infrastructure.Converters {
-    public class ErrorToIsEnabledConverter : IValueConverter {
+    public class ErrorToIsEnabledConvert : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             if (value == null) {
                 return true;
