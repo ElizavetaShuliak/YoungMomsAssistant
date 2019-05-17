@@ -37,7 +37,8 @@ namespace YoungMomsAssistant.UI.Views.CustomControls {
                     Id = lifeEvent.Id,
                     Image = lifeEvent.Image.Clone() as byte[],
                     Summary = lifeEvent.Summary,
-                    Title = lifeEvent.Title
+                    Title = lifeEvent.Title,
+                    Date = lifeEvent.Date
                 };
                 editExpander.IsExpanded = mainExpander.IsExpanded = true;
             }

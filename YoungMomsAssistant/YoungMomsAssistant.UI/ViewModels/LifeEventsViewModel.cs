@@ -76,7 +76,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public DateTime SelectedDate { get; set; }
+        public DateTime SelectedDate { get; set; } = DateTime.Today;
 
         public string ImageToAddPath {
             get => _imageToAddPath;

@@ -34,7 +34,7 @@ namespace YoungMomsAssistant.UI.Services {
         }
 
         public async Task<List<LifeEvent>> GetByDateAsync(DateTime date) {
-            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/{date.Day}/{date.Month}/{date.Year}}";
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/{date.Day}/{date.Month}/{date.Year}";
             var result = await _requestJwtTokensDecorator.GetAsync(url);
 
             if (result.StatusCode == HttpStatusCode.OK) {

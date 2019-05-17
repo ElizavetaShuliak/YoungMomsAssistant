@@ -253,7 +253,7 @@
                                         Width="100"
                                         HorizontalAlignment="Right"
                                         md:HintAssist.Hint="Pick Date"
-                                        DataContext="{Binding LifeEventToAdd}"
+                                        DataContext="{Binding LifeEventToEdit}"
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
                                         <DatePicker.SelectedDate>
                                             <Binding Path="Date" UpdateSourceTrigger="PropertyChanged">

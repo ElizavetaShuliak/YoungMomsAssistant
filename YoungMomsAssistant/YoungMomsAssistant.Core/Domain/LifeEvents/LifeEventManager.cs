@@ -38,8 +38,9 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
             var lifeEvent = new LifeEvent {
                 Title = lifeEventDto.Title,
                 Summary = lifeEventDto.Summary,
+                Date = lifeEventDto.Date,
                 User = owner,
-                Image = image
+                Image = image,
             };
 
             await _LifeEventsRepo.AddAsync(lifeEvent);
@@ -55,7 +56,8 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
                     Id = lifeEvent.Id,
                     Title = lifeEvent.Title,
                     Summary = lifeEvent.Summary,
-                    Image = lifeEvent.Image.Source
+                    Image = lifeEvent.Image.Source,
+                    Date = lifeEvent.Date
                 });
         }
 
@@ -69,7 +71,8 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
                     Id = lifeEvent.Id,
                     Title = lifeEvent.Title,
                     Summary = lifeEvent.Summary,
-                    Image = lifeEvent.Image.Source
+                    Image = lifeEvent.Image.Source,
+                    Date = lifeEvent.Date
                 });
         }
 
@@ -81,6 +84,7 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
             if (lifeEventDb.User_Id == owner.Id) {
                 lifeEventDb.Title = lifeEventDto.Title;
                 lifeEventDb.Summary = lifeEventDto.Summary;
+                lifeEventDb.Date = lifeEventDto.Date;
                 if (lifeEventDto.IsImageChanged) {
                     lifeEventDb.Image = new Image { Source = lifeEventDto.Image };
                 }
