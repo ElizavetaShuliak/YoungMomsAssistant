@@ -82,9 +82,13 @@
     <Compile Include="Services\ILifeEventsService.cs" />
     <Compile Include="Services\LifeEventsService.cs" />
     <Compile Include="ViewModels\AllBabiesViewModel.cs" />
+    <Compile Include="ViewModels\BabyDetailsViewModel.cs" />
     <Compile Include="ViewModels\LifeEventsViewModel.cs" />
     <Compile Include="Views\CustomControls\AllBabiesControl.xaml.cs">
       <DependentUpon>AllBabiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\BabyDetailsControl.xaml.cs">
+      <DependentUpon>BabyDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\ErrorDialogContent.xaml.cs">
       <DependentUpon>ErrorDialogContent.xaml</DependentUpon>
@@ -121,6 +125,10 @@
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\CustomControls\AllBabiesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\BabyDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

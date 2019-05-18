@@ -12,12 +12,22 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
 
         private IRepository<Baby> _babiesRepo;
         private IRepository<User> _usersRepo;
+        private IRepository<BabyGrowth> _babyGrowthsRepo;
+        private IRepository<BabyWeight> _babyWeightsRepo;
+        private IRepository<BabyVaccination> _babyVaccinationRepo;
 
         public BabyManager(
             IRepository<Baby> babiesRepository,
-            IRepository<User> usersRepository) {
+            IRepository<User> usersRepository,
+            IRepository<BabyGrowth> babyGrowthsRepo,
+            IRepository<BabyWeight> babyWeightsRepo,
+            IRepository<BabyVaccination> babyVaccinationRepo) {
+
             _babiesRepo = babiesRepository;
             _usersRepo = usersRepository;
+            _babyGrowthsRepo = babyGrowthsRepo;
+            _babyWeightsRepo = babyWeightsRepo;
+            _babyVaccinationRepo = babyVaccinationRepo;
         }
 
         public async Task AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal) {
@@ -73,6 +83,116 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             else {
                 throw new ArgumentException("claimsPrincipal");
             }
+        }
+
+        public async Task AddBabyGrowthsAsync(BabyGrowthDto babyGrowthDto, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            var babyDb = await _babiesRepo
+                .FindAsync(b => b.Id == babyGrowthDto.BabyId);
+
+            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+                var babyGrowth = new BabyGrowth {
+                    Baby = babyDb,
+                    Date = babyGrowthDto.Date,
+                    Growth = babyGrowthDto.Growth
+                };
+
+                await _babyGrowthsRepo.AddAsync(babyGrowth);
+            }
+            else {
+                throw new ArgumentException("claimsPrincipal");
+            }
+        }
+
+        public async Task<IEnumerable<BabyGrowthDto>> GetBabyGrowthsAsync(int babyId, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            return (await _babyGrowthsRepo
+                .FindAllAsync(bg => bg.Baby.Users
+                    .FirstOrDefault(ub => ub.User_Id == owner.Id) != null && bg.Baby_Id == babyId))
+                .Select(bg => new BabyGrowthDto {
+                    Date = bg.Date,
+                    Growth = bg.Growth,
+                    Id = bg.Id,
+                    BabyId = bg.Baby_Id
+                });
+        }
+
+        public async Task AddBabyWeightsAsync(BabyWeightDto babyWeightDto, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            var babyDb = await _babiesRepo
+                .FindAsync(b => b.Id == babyWeightDto.BabyId);
+
+            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+                var babyWeight = new BabyWeight {
+                    Baby = babyDb,
+                    Date = babyWeightDto.Date,
+                    Weight = babyWeightDto.Weight
+                };
+
+                await _babyWeightsRepo.AddAsync(babyWeight);
+            }
+            else {
+                throw new ArgumentException("claimsPrincipal");
+            }
+        }
+
+        public async Task<IEnumerable<BabyWeightDto>> GetBabyWeigthsAsync(int babyId, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            return (await _babyWeightsRepo
+                .FindAllAsync(bw => bw.Baby.Users
+                    .FirstOrDefault(ub => ub.User_Id == owner.Id) != null && bw.Baby_Id == babyId))
+                .Select(bw => new BabyWeightDto {
+                    Date = bw.Date,
+                    Weight = bw.Weight,
+                    Id = bw.Id,
+                    BabyId = bw.Baby_Id
+                });
+        }
+
+        public async Task AddBabyVaccinationAsync(BabyVaccinationDto babyVaccinationDto, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            var babyDb = await _babiesRepo
+                .FindAsync(b => b.Id == babyVaccinationDto.BabyId);
+
+            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+                var babyVaccination = new BabyVaccination {
+                    Baby = babyDb,
+                    Date = babyVaccinationDto.Date,
+                    Vaccination = new Vaccination {
+                        Name = babyVaccinationDto.Name
+                    }
+                };
+
+                await _babyVaccinationRepo.AddAsync(babyVaccination);
+            }
+            else {
+                throw new ArgumentException("claimsPrincipal");
+            }
+        }
+
+        public async Task<IEnumerable<BabyVaccinationDto>> GetBabyVaccinationsAsync(int babyId, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            return (await _babyVaccinationRepo
+                .FindAllAsync(v => v.Baby.Users
+                    .FirstOrDefault(ub => ub.User_Id == owner.Id) != null && v.Baby_Id == babyId))
+                .Select(bw => new BabyVaccinationDto {
+                    BabyId = bw.Baby_Id,
+                    Date = bw.Date,
+                    Id = bw.Id,
+                    Name = bw.Vaccination.Name
+                });
         }
 
         private string GetEmailFromPrincipal(ClaimsPrincipal claimsPrincipal)
