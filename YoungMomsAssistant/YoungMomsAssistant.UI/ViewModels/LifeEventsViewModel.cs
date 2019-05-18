@@ -123,7 +123,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
             catch (AuthorizationException ex) {
                 await _windowsService.OpenErrorDialogAsync("An Authorization error has occurred", "dialogHost");
-                //
+                _windowsService.NaviagteToSignInWindow(ClosableWindow);
             }
             catch (HttpRequestException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred", "dialogHost");
@@ -179,7 +179,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
             catch (AuthorizationException ex) {
                 await _windowsService.OpenErrorDialogAsync("An Authorization error has occurred", "dialogHost");
-                //
+                _windowsService.NaviagteToSignInWindow(ClosableWindow);
             }
             catch (HttpRequestException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred", "dialogHost");
@@ -211,7 +211,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
             catch (AuthorizationException ex) {
                 await _windowsService.OpenErrorDialogAsync("An Authorization error has occurred", "dialogHost");
-                //
+                _windowsService.NaviagteToSignInWindow(ClosableWindow);
             }
             catch (HttpRequestException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred", "dialogHost");
