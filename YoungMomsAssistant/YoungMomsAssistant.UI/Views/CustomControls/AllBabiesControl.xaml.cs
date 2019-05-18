@@ -31,12 +31,20 @@ namespace YoungMomsAssistant.UI.Views.CustomControls {
             set => DataContext = value;
         }
 
-        public async void UpdateDabyDetails_Click(object sender, RoutedEventArgs e) {
+        public async void UpdateBabyDetails_Click(object sender, RoutedEventArgs e) {
             if (sender is Button button) {
                 button.IsEnabled = false;
-                await ViewModel?.UpdateBabyDetails(button?.DataContext as Baby);
+                await ViewModel?.UpdateBabyDetailsAsync(button?.DataContext as Baby);
                 button.IsEnabled = true;
             }  
+        }
+
+        public async void DeleteBaby_Click(object sender, RoutedEventArgs e) {
+            if (sender is Button button) {
+                button.IsEnabled = false;
+                await ViewModel?.DeleteBabyAsync(button?.DataContext as Baby);
+                button.IsEnabled = true;
+            }
         }
     }
 }

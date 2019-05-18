@@ -50,6 +50,20 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             await _babiesRepo.AddAsync(baby);
         }
 
+        public async Task DeleteBabyAsync(int babyId, ClaimsPrincipal claimsPrincipal) {
+            var email = GetEmailFromPrincipal(claimsPrincipal);
+            var owner = await GetOwnerAsync(email);
+
+            var babyDb = await _babiesRepo.FindAsync(b => b.Id == babyId);
+
+            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+                await _babiesRepo.RemoveAsync(babyId);
+            }
+            else {
+                throw new ArgumentException("claimsPrincipal");
+            }
+        }
+
         public async Task<IEnumerable<BabyDto>> GetBabiesByUserAsync(ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);

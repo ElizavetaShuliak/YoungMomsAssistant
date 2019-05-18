@@ -72,9 +72,29 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public async Task UpdateBabyDetails(Baby baby) {
+        public async Task UpdateBabyDetailsAsync(Baby baby) {
             try {
                 await _babiesService.UpdateAsync(baby);
+            }
+            catch (NotOkResponseException ex) {
+                await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
+            }
+            catch (AuthorizationException ex) {
+                await _windowsService.OpenErrorDialogAsync("An Authorization error has occurred", "dialogHost");
+                _windowsService.NaviagteToSignInWindow(ClosableWindow);
+            }
+            catch (HttpRequestException ex) {
+                await _windowsService.OpenErrorDialogAsync($"An request error has occurred", "dialogHost");
+            }
+            catch {
+                await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
+            }
+        }
+
+        public async Task DeleteBabyAsync(Baby baby) {
+            try {
+                await _babiesService.DeleteAsync(baby.Id);
+                UpdateListCommand?.Execute(null);
             }
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");

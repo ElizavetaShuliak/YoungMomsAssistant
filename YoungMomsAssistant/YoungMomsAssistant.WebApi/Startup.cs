@@ -29,6 +29,9 @@ namespace YoungMomsAssistant.WebApi {
             services.AddTransient<IRepository<Baby>, BabyRepository>();
             services.AddTransient<IRepository<LifeEvent>, LifeEventRepository>();
             services.AddTransient<IRepository<Image>, ImageRepository>();
+            services.AddTransient<IRepository<BabyGrowth>, BabyGrowthRepository>();
+            services.AddTransient<IRepository<BabyWeight>, BabyWeightRepository>();
+            services.AddTransient<IRepository<BabyVaccination>, BabyVaccinationRepository>();
 
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IBabyManager, BabyManager>();

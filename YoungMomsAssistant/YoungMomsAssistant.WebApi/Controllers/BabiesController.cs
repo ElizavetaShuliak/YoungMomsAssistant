@@ -43,5 +43,13 @@ namespace YoungMomsAssistant.WebApi.Controllers {
 
             return Ok();
         }
+
+        [HttpDelete("Delete/{id}")]
+        [Authorize]
+        public async Task<ActionResult> Delete(int id) {
+            await _babyManager.DeleteBabyAsync(id, HttpContext.User);
+
+            return Ok();
+        }
     }
 }

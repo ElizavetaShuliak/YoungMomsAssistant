@@ -150,14 +150,23 @@
                                             Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                                     </Grid>
                                 </StackPanel>
-                                <Button
+                                <StackPanel
                                     Grid.Row="2"
                                     HorizontalAlignment="Center"
-                                    Click="UpdateDabyDetails_Click"
-                                    IsEnabled="{Binding Error, Converter={StaticResource ErrorToIsEnabledConverter}, UpdateSourceTrigger=PropertyChanged}"
-                                    Style="{StaticResource MaterialDesignFlatButton}">
-                                    Update
-                                </Button>
+                                    Orientation="Horizontal">
+                                    <Button
+                                        Click="DeleteBaby_Click"
+                                        Foreground="Red"
+                                        Style="{StaticResource MaterialDesignFlatButton}">
+                                        Delete
+                                    </Button>
+                                    <Button
+                                        Click="UpdateBabyDetails_Click"
+                                        IsEnabled="{Binding Error, Converter={StaticResource ErrorToIsEnabledConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                        Style="{StaticResource MaterialDesignFlatButton}">
+                                        Update
+                                    </Button>
+                                </StackPanel>
                             </Grid>
                         </md:Flipper.BackContent>
                     </md:Flipper>
@@ -176,106 +185,106 @@
                     </TextBlock.LayoutTransform>
                 </TextBlock>
             </Expander.Header>
-            <DockPanel
-                Margin="8,24,16,24"
-                VerticalAlignment="Stretch"
-                LastChildFill="False"
-                TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
-                <md:Card DockPanel.Dock="Top">
-                    <Grid Width="200" Height="256">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <md:ColorZone Padding="6" Mode="Accent">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="8,0,0,0" VerticalAlignment="Center">
-                                    Baby's Details
-                                </TextBlock>
-                            </StackPanel>
-                        </md:ColorZone>
-                        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                            <StackPanel
-                                Margin="10,0"
-                                HorizontalAlignment="Stretch"
-                                Orientation="Vertical">
-                                <TextBox
-                                    md:HintAssist.Hint="First name"
-                                    md:HintAssist.IsFloating="True"
-                                    DataContext="{Binding BabyToAdd}"
-                                    FontSize="14">
-                                    <TextBox.Text>
-                                        <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <DataErrorValidationRule />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-                                <TextBox
-                                    md:HintAssist.Hint="Last name"
-                                    md:HintAssist.IsFloating="True"
-                                    DataContext="{Binding BabyToAdd}"
-                                    FontSize="14">
-                                    <TextBox.Text>
-                                        <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <DataErrorValidationRule />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-                            </StackPanel>
-                            <Grid Margin="10,0,10,10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel
+                    Margin="8,24,16,24"
+                    VerticalAlignment="Stretch"
+                    TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+                    <md:Card DockPanel.Dock="Top">
+                        <Grid Width="200" Height="256">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <md:ColorZone Padding="6" Mode="Accent">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="8,0,0,0" VerticalAlignment="Center">
+                                        Baby's Details
+                                    </TextBlock>
+                                </StackPanel>
+                            </md:ColorZone>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                                 <StackPanel
-                                    Grid.Column="0"
-                                    Margin="0,0,10,0"
+                                    Margin="10,0"
+                                    HorizontalAlignment="Stretch"
                                     Orientation="Vertical">
                                     <TextBox
-                                        md:HintAssist.Hint="Blood type"
+                                        md:HintAssist.Hint="First name"
                                         md:HintAssist.IsFloating="True"
                                         DataContext="{Binding BabyToAdd}"
-                                        FontSize="14"
-                                        Text="{Binding Path=BloodType}" />
+                                        FontSize="14">
+                                        <TextBox.Text>
+                                            <Binding Path="FirstName" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                     <TextBox
-                                        md:HintAssist.Hint="Sex"
+                                        md:HintAssist.Hint="Last name"
                                         md:HintAssist.IsFloating="True"
                                         DataContext="{Binding BabyToAdd}"
-                                        FontSize="14"
-                                        Text="{Binding Path=Sex}" />
+                                        FontSize="14">
+                                        <TextBox.Text>
+                                            <Binding Path="LastName" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
                                 </StackPanel>
-                                <DatePicker
-                                    Grid.Column="1"
-                                    Margin="10,0,0,0"
-                                    VerticalAlignment="Bottom"
-                                    md:HintAssist.Hint="Pick Date"
-                                    DataContext="{Binding BabyToAdd}"
-                                    SelectedDate="{Binding Path=BirthDay}"
-                                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                            </Grid>
-                        </StackPanel>
-                        <Button
-                            Grid.Row="2"
-                            HorizontalAlignment="Center"
-                            Command="{Binding AddNewBabyCommand}"
-                            Style="{StaticResource MaterialDesignFlatButton}">
-                            Add New
-                        </Button>
-                    </Grid>
-                </md:Card>
-                <Button
-                    Command="{Binding UpdateListCommand}"
-                    DockPanel.Dock="Bottom"
-                    IsEnabled="{Binding IsUpdateListComplete}"
-                    Style="{StaticResource MaterialDesignFlatButton}">
-                    Update List
-                </Button>
-            </DockPanel>
+                                <Grid Margin="10,0,10,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel
+                                        Grid.Column="0"
+                                        Margin="0,0,10,0"
+                                        Orientation="Vertical">
+                                        <TextBox
+                                            md:HintAssist.Hint="Blood type"
+                                            md:HintAssist.IsFloating="True"
+                                            DataContext="{Binding BabyToAdd}"
+                                            FontSize="14"
+                                            Text="{Binding Path=BloodType}" />
+                                        <TextBox
+                                            md:HintAssist.Hint="Sex"
+                                            md:HintAssist.IsFloating="True"
+                                            DataContext="{Binding BabyToAdd}"
+                                            FontSize="14"
+                                            Text="{Binding Path=Sex}" />
+                                    </StackPanel>
+                                    <DatePicker
+                                        Grid.Column="1"
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Bottom"
+                                        md:HintAssist.Hint="Pick Date"
+                                        DataContext="{Binding BabyToAdd}"
+                                        SelectedDate="{Binding Path=BirthDay}"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                </Grid>
+                            </StackPanel>
+                            <Button
+                                Grid.Row="2"
+                                HorizontalAlignment="Center"
+                                Command="{Binding AddNewBabyCommand}"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                                Add New
+                            </Button>
+                        </Grid>
+                    </md:Card>
+                    <Button
+                        Command="{Binding UpdateListCommand}"
+                        IsEnabled="{Binding IsUpdateListComplete}"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+                        Update List
+                    </Button>
+                </StackPanel>
+            </ScrollViewer>
         </Expander>
     </Grid>
 </UserControl>
