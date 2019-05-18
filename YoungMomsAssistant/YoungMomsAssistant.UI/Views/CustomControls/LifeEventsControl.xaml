@@ -64,7 +64,6 @@
                                     FontSize="20"
                                     Text="{Binding Title}"
                                     TextWrapping="Wrap" />
-                                <TextBlock Text="{Binding Date}" />
                                 <ScrollViewer Height="80" VerticalScrollBarVisibility="Auto">
                                     <TextBlock
                                         FontSize="13"

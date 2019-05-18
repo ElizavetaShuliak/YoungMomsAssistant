@@ -29,6 +29,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private ILifeEventsService _lifeEventsService;
         private WindowsService _windowsService;
+        private DateTime _selectedDate = DateTime.Today;
 
         public LifeEventsViewModel(
             ILifeEventsService lifeEventsService,
@@ -76,7 +77,13 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public DateTime SelectedDate { get; set; } = DateTime.Today;
+        public DateTime SelectedDate {
+            get => _selectedDate;
+            set {
+                _selectedDate = value;
+                UpdateListCommand?.Execute(null);
+            }
+        }
 
         public string ImageToAddPath {
             get => _imageToAddPath;
@@ -109,6 +116,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 await _lifeEventsService.AddAsync(LifeEventToAdd);
                 LifeEventToAdd = null;
                 ImageToAddPath = null;
+                UpdateListCommand?.Execute(null);
             }
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
@@ -164,6 +172,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 await _lifeEventsService.UpdateAsync(LifeEventToEdit);
                 LifeEventToEdit = null;
                 ImageToEditPath = null;
+                UpdateListCommand?.Execute(null);
             }
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
