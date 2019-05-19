@@ -61,8 +61,8 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var babyDb = await _babiesRepo.FindAsync(b => b.Id == babyId);
 
             if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
-                await _imagesRepo.RemoveAsync(babyDb.Image_Id);
                 await _babiesRepo.RemoveAsync(babyId);
+                await _imagesRepo.RemoveAsync(babyDb.Image_Id);
             }
             else {
                 throw new ArgumentException("claimsPrincipal");
