@@ -15,31 +15,39 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
         private IRepository<BabyGrowth> _babyGrowthsRepo;
         private IRepository<BabyWeight> _babyWeightsRepo;
         private IRepository<BabyVaccination> _babyVaccinationRepo;
+        private IRepository<Image> _imagesRepo;
 
         public BabyManager(
             IRepository<Baby> babiesRepository,
             IRepository<User> usersRepository,
             IRepository<BabyGrowth> babyGrowthsRepo,
             IRepository<BabyWeight> babyWeightsRepo,
-            IRepository<BabyVaccination> babyVaccinationRepo) {
+            IRepository<BabyVaccination> babyVaccinationRepo,
+            IRepository<Image> imagesRepo) {
 
             _babiesRepo = babiesRepository;
             _usersRepo = usersRepository;
             _babyGrowthsRepo = babyGrowthsRepo;
             _babyWeightsRepo = babyWeightsRepo;
             _babyVaccinationRepo = babyVaccinationRepo;
+            _imagesRepo = imagesRepo;
         }
 
         public async Task AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
+            var image = new Image {
+                Source = babyDto.Image
+            };
+
             var baby = new Baby {
                 FirstName = babyDto.FirstName,
                 LastName = babyDto.LastName,
                 BirthDay = babyDto.BirthDay,
                 BloodType = babyDto.BloodType,
-                Sex = babyDto.Sex
+                Sex = babyDto.Sex,
+                Image = image
             };
 
             baby.Users = new List<UserBaby> { new UserBaby {
@@ -57,6 +65,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var babyDb = await _babiesRepo.FindAsync(b => b.Id == babyId);
 
             if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+                await _imagesRepo.RemoveAsync(babyDb.Image_Id);
                 await _babiesRepo.RemoveAsync(babyId);
             }
             else {
@@ -76,7 +85,8 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                     LastName = baby.LastName,
                     BirthDay = baby.BirthDay,
                     BloodType = baby.BloodType,
-                    Sex = baby.Sex
+                    Sex = baby.Sex,
+                    Image = baby.Image.Source
                 });
         }
 
@@ -91,6 +101,10 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 babyDb.Sex = babyDto.Sex;
                 babyDb.BirthDay = babyDto.BirthDay;
                 babyDb.BloodType = babyDto.BloodType;
+
+                if (babyDto.IsImageChanged) {
+                    babyDb.Image = babyDto.Image != null? new Image { Source = babyDto.Image} : null;
+                }
 
                 await _babiesRepo.UpdateAsync(babyDb);
             }

@@ -13,6 +13,7 @@ namespace YoungMomsAssistant.UI.Models {
         private DateTime _birthDay;
         private string _sex;
         private string _bloodType;
+        private byte[] _image;
 
         public int Id { get; set; }
 
@@ -52,6 +53,17 @@ namespace YoungMomsAssistant.UI.Models {
             get => _bloodType;
             set {
                 _bloodType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsImageChanged { get; set; }
+
+        public byte[] Image {
+            get => _image;
+            set {
+                _image = value;
+                IsImageChanged = true;
                 OnPropertyChanged();
             }
         }

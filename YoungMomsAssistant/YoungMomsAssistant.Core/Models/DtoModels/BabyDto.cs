@@ -13,5 +13,9 @@ namespace YoungMomsAssistant.Core.Models.DtoModels {
         public string Sex { get; set; }
 
         public string BloodType { get; set; }
+
+        public bool IsImageChanged { get; set; }
+
+        public byte[] Image { get; set; }
     }
 }

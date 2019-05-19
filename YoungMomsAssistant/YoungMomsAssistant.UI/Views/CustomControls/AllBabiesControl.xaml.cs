@@ -46,5 +46,15 @@ namespace YoungMomsAssistant.UI.Views.CustomControls {
                 button.IsEnabled = true;
             }
         }
+
+        public void LoadImage_Click(object sender, RoutedEventArgs e) {
+            if (sender is Button button) {
+                button.IsEnabled = false;
+                if (button.DataContext is Baby baby) {
+                    ViewModel?.LoadImageCommand?.Execute(baby);
+                }
+                button.IsEnabled = true;
+            }
+        }
     }
 }

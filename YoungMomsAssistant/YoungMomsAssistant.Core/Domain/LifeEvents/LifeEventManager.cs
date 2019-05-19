@@ -13,7 +13,7 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
 
         private IRepository<LifeEvent> _LifeEventsRepo;
         private IRepository<User> _usersRepo;
-        private IRepository<Image> _iamgesRepo;
+        private IRepository<Image> _imagesRepo;
 
         public LifeEventManager(
             IRepository<LifeEvent> lifeEventRepository,
@@ -22,7 +22,7 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
 
             _LifeEventsRepo = lifeEventRepository;
             _usersRepo = usersRepository;
-            _iamgesRepo = iamgesRepo;
+            _imagesRepo = iamgesRepo;
         }
 
         public async Task AddNewLifeEventAsync(LifeEventDto lifeEventDto, ClaimsPrincipal claimsPrincipal) {
@@ -33,7 +33,7 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
                 Source = lifeEventDto.Image
             };
 
-            await _iamgesRepo.AddAsync(image);
+            await _imagesRepo.AddAsync(image);
 
             var lifeEvent = new LifeEvent {
                 Title = lifeEventDto.Title,

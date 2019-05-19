@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using YoungMomsAssistant.UI.Infrastructure.Commands;
 using YoungMomsAssistant.UI.Infrastructure.Commands.Generic;
 using YoungMomsAssistant.UI.Infrastructure.Exceptions;
@@ -19,6 +22,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
         private Baby _babyToAdd;
 
         private bool _isUpdateListComplete;
+        private string _imageToAddPath;
 
         private TemplatesNavigationService _navigationService;
         private WindowsService _windowsService;
@@ -35,6 +39,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
             AddNewBabyCommand = new RelayCommand(AddNewBabyCommandExecute, AddNewBabyCommandCanExecut);
             UpdateListCommand = new RelayCommand(UpdateListCommandExecute);
+            LoadImageCommand = new RelayCommand<Baby>(LoadImageCommandExecute);
 
             UpdateListCommand?.Execute(null);
         }
@@ -72,9 +77,18 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
+        public string ImageToAddPath {
+            get => _imageToAddPath;
+            set {
+                _imageToAddPath = value;
+                OnPropertyChanged();
+            }
+        }
+
         public async Task UpdateBabyDetailsAsync(Baby baby) {
             try {
                 await _babiesService.UpdateAsync(baby);
+                UpdateListCommand?.Execute(null);
             }
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
@@ -162,9 +176,42 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
+        private async void LoadImageCommandExecute(Baby obj) {
+            var openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == true) {
+                try {
+                    new BitmapImage(new Uri(openFileDialog.FileName));
+
+                    using (var stream = openFileDialog.OpenFile()) {
+                        if (obj == null) {
+                            await stream.ReadAsync(BabyToAdd.Image = new byte[(int)stream.Length], 0, (int)stream.Length);
+                            ImageToAddPath = openFileDialog.FileName;
+                        }
+                        else {
+                            byte[] bytes; 
+                            await stream.ReadAsync(bytes = new byte[(int)stream.Length], 0, (int)stream.Length);
+                            obj.Image = bytes;
+                        }
+                    }
+                }
+                catch (NotSupportedException ex) {
+                    await _windowsService.OpenErrorDialogAsync("Bad image format", "dialogHost");
+                }
+                catch (IOException ex) {
+                    await _windowsService.OpenErrorDialogAsync("Open file error", "dialogHost");
+                }
+                catch {
+                    await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
+                }
+            }
+        }
+
         public ICommand AddNewBabyCommand { get; }
 
         public ICommand UpdateListCommand { get; }
+
+        public ICommand LoadImageCommand { get; }
 
         #endregion
     }
