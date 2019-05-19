@@ -19,6 +19,7 @@
             <cv:ErrorToIsEnabledConvert x:Key="ErrorToIsEnabledConverter" />
             <cv:BytesToImageConvert x:Key="BytesToImageConverter" />
             <cv:NullToCollapsedConvert x:Key="NullToCollapsedConverter" />
+            <cv:SexConvert x:Key="SexConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -150,16 +151,15 @@
                                             Grid.Column="0"
                                             Margin="0,0,10,0"
                                             Orientation="Vertical">
-                                            <TextBox
-                                                md:HintAssist.Hint="Blood type"
-                                                md:HintAssist.IsFloating="True"
-                                                FontSize="14"
-                                                Text="{Binding Path=BloodType}" />
-                                            <TextBox
-                                                md:HintAssist.Hint="Sex"
-                                                md:HintAssist.IsFloating="True"
-                                                FontSize="14"
-                                                Text="{Binding Path=Sex}" />
+                                            <ComboBox
+                                                Margin="0,10,0,0"
+                                                md:HintAssist.Hint="Blood Type"
+                                                ItemsSource="{Binding BloodTypes}"
+                                                SelectedValue="{Binding BloodType}" />
+                                            <StackPanel Margin="0,5,0,0">
+                                                <RadioButton Content="Men" IsChecked="{Binding Sex, Converter={StaticResource SexConverter}, ConverterParameter=Men}" />
+                                                <RadioButton Content="Women" IsChecked="{Binding Sex, Converter={StaticResource SexConverter}, ConverterParameter=Women}" />
+                                            </StackPanel>
                                         </StackPanel>
                                         <DatePicker
                                             Grid.Column="1"
@@ -286,18 +286,22 @@
                                         Grid.Column="0"
                                         Margin="0,0,10,0"
                                         Orientation="Vertical">
-                                        <TextBox
+                                        <!--<TextBox
                                             md:HintAssist.Hint="Blood type"
                                             md:HintAssist.IsFloating="True"
                                             DataContext="{Binding BabyToAdd}"
                                             FontSize="14"
-                                            Text="{Binding Path=BloodType}" />
-                                        <TextBox
-                                            md:HintAssist.Hint="Sex"
-                                            md:HintAssist.IsFloating="True"
+                                            Text="{Binding Path=BloodType}" />-->
+                                        <ComboBox
+                                            Margin="0,20,0,0"
+                                            md:HintAssist.Hint="Blood Type"
                                             DataContext="{Binding BabyToAdd}"
-                                            FontSize="14"
-                                            Text="{Binding Path=Sex}" />
+                                            ItemsSource="{Binding BloodTypes}"
+                                            SelectedValue="{Binding BloodType}" />
+                                        <StackPanel Margin="0,5,0,0" DataContext="{Binding BabyToAdd}">
+                                            <RadioButton Content="Men" IsChecked="{Binding Sex, Converter={StaticResource SexConverter}, ConverterParameter=Men}" />
+                                            <RadioButton Content="Women" IsChecked="{Binding Sex, Converter={StaticResource SexConverter}, ConverterParameter=Women}" />
+                                        </StackPanel>
                                     </StackPanel>
                                     <DatePicker
                                         Grid.Column="1"

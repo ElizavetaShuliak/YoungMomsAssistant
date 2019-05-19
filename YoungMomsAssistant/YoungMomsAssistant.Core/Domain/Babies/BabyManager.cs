@@ -37,17 +37,13 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
-            var image = new Image {
-                Source = babyDto.Image
-            };
-
             var baby = new Baby {
                 FirstName = babyDto.FirstName,
                 LastName = babyDto.LastName,
                 BirthDay = babyDto.BirthDay,
                 BloodType = babyDto.BloodType,
                 Sex = babyDto.Sex,
-                Image = image
+                Image = new Image { Source = babyDto.Image }
             };
 
             baby.Users = new List<UserBaby> { new UserBaby {
@@ -103,7 +99,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 babyDb.BloodType = babyDto.BloodType;
 
                 if (babyDto.IsImageChanged) {
-                    babyDb.Image = babyDto.Image != null? new Image { Source = babyDto.Image} : null;
+                    babyDb.Image = new Image { Source = babyDto.Image};
                 }
 
                 await _babiesRepo.UpdateAsync(babyDb);

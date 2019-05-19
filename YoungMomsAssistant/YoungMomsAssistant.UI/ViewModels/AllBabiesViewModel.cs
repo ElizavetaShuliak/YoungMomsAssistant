@@ -149,7 +149,10 @@ namespace YoungMomsAssistant.UI.ViewModels {
         }
 
         private bool AddNewBabyCommandCanExecut(object obj) {
-            return string.IsNullOrWhiteSpace(BabyToAdd.Error);
+            return string.IsNullOrWhiteSpace(BabyToAdd["Sex"])
+                && string.IsNullOrWhiteSpace(BabyToAdd["BloodType"])
+                && string.IsNullOrWhiteSpace(BabyToAdd["Image"])
+                && string.IsNullOrWhiteSpace(BabyToAdd.Error);
         }
 
         private async void UpdateListCommandExecute(object obj) {

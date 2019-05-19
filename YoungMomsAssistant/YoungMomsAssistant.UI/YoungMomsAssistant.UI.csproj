@@ -78,6 +78,7 @@
     <Compile Include="Infrastructure\Converters\ErrorToIsEnabledConvert.cs" />
     <Compile Include="Infrastructure\Converters\NullToCollapsedConvert.cs" />
     <Compile Include="Infrastructure\Converters\NullToFalseConvert.cs" />
+    <Compile Include="Infrastructure\Converters\SexConvert.cs" />
     <Compile Include="Models\LifeEvent.cs" />
     <Compile Include="Services\IBabiesService.cs" />
     <Compile Include="Services\ILifeEventsService.cs" />

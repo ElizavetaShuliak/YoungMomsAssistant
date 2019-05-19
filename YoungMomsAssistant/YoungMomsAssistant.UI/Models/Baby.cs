@@ -8,6 +8,11 @@ using YoungMomsAssistant.UI.Infrastructure.Extensions;
 
 namespace YoungMomsAssistant.UI.Models {
     public class Baby : ModelBase, IDataErrorInfo {
+
+        public static string[] BloodTypes { get; set; } = {
+            "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"
+        };
+
         private string _firstName;
         private string _lastName;
         private DateTime _birthDay;
@@ -89,6 +94,33 @@ namespace YoungMomsAssistant.UI.Models {
                         }
                         else {
                             _errors["LastName"] = null;
+                        }
+                        break;
+                    case "Sex":
+                        if (string.IsNullOrWhiteSpace(Sex)) {
+                            error = "error";
+                            _errors["Sex"] = error;
+                        }
+                        else {
+                            _errors["Sex"] = null;
+                        }
+                        break;
+                    case "BloodType":
+                        if (string.IsNullOrWhiteSpace(BloodType)) {
+                            error = "error";
+                            _errors["BloodType"] = error;
+                        }
+                        else {
+                            _errors["BloodType"] = null;
+                        }
+                        break;
+                    case "Image":
+                        if (Image == null) {
+                            error = "error";
+                            _errors["Image"] = error;
+                        }
+                        else {
+                            _errors["Image"] = null;
                         }
                         break;
                 }
