@@ -6,5 +6,7 @@
         public const string Login = @"^[a-z]{1}[a-z0-9\-_\.]{2,24}$";
 
         public const string Password = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z0-9\S]{6,24}$";
+
+        public const string Name = @"^(.|\s)*\S(.|\s)*$";
     }
 }

@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace YoungMomsAssistant.WebApi.Migrations
-{
-    public partial class MergeBabyAndBabyInfo : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace YoungMomsAssistant.WebApi.Migrations {
+    public partial class MergeBabyAndBabyInfo : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "BabyInfos");
 
@@ -23,8 +20,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                 defaultValue: "");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropColumn(
                 name: "BloodType",
                 table: "Babies");
@@ -35,16 +31,14 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BabyInfos",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
                     BloodType = table.Column<string>(nullable: false),
                     Sex = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyInfos", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyInfos_Babies_Baby_Id",

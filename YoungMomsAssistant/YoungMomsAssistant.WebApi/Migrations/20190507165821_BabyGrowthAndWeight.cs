@@ -1,13 +1,10 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace YoungMomsAssistant.WebApi.Migrations
-{
-    public partial class BabyGrowthAndWeight : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace YoungMomsAssistant.WebApi.Migrations {
+    public partial class BabyGrowthAndWeight : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropColumn(
                 name: "CurrentGrowth",
                 table: "BabyInfos");
@@ -18,16 +15,14 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BabyGrowths",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Growth = table.Column<double>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyGrowths", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyGrowths_Babies_Baby_Id",
@@ -39,16 +34,14 @@ namespace YoungMomsAssistant.WebApi.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BabyWeights",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Baby_Id = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Weight = table.Column<double>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_BabyWeights", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BabyWeights_Babies_Baby_Id",
@@ -69,8 +62,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                 column: "Baby_Id");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "BabyGrowths");
 

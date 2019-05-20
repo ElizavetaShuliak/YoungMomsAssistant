@@ -48,6 +48,8 @@ namespace YoungMomsAssistant.WebApi.Migrations
                         .IsRequired()
                         .HasMaxLength(255);
 
+                    b.Property<int>("Image_Id");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(255);
@@ -56,6 +58,8 @@ namespace YoungMomsAssistant.WebApi.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Image_Id");
 
                     b.ToTable("Babies");
                 });
@@ -195,6 +199,8 @@ namespace YoungMomsAssistant.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<int>("Image_Id");
 
                     b.Property<string>("Summary")
@@ -282,6 +288,14 @@ namespace YoungMomsAssistant.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vaccinations");
+                });
+
+            modelBuilder.Entity("YoungMomsAssistant.Core.Models.DbModels.Baby", b =>
+                {
+                    b.HasOne("YoungMomsAssistant.Core.Models.DbModels.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("Image_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("YoungMomsAssistant.Core.Models.DbModels.BabyAllergy", b =>

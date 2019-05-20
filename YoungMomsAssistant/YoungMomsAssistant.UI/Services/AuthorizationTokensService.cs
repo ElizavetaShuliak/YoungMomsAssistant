@@ -25,7 +25,7 @@ namespace YoungMomsAssistant.UI.Services {
 
                 if (result.StatusCode == HttpStatusCode.OK) {
                     var jsonContentString = await result.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<JwtTokens>(jsonContentString);
+                    return Tokens = JsonConvert.DeserializeObject<JwtTokens>(jsonContentString);
                 }
                 else {
                     throw new NotOkResponseException(((int)result.StatusCode).ToString());

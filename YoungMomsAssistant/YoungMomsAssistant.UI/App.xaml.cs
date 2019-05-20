@@ -15,6 +15,9 @@ namespace YoungMomsAssistant.UI {
 
             container.RegisterType<IAuthenticationService, AuthenticationService>();
             container.RegisterSingleton<IAuthorizationTokensService, AuthorizationTokensService>();
+            container.RegisterSingleton<ILifeEventsService, LifeEventsService>();
+            container.RegisterSingleton<IRequestJwtTokensDecorator, RequestJwtTokensDecorator>();
+            container.RegisterSingleton<IBabiesService, BabiesService>();
 
             container.RegisterType<MainWindow>();
             container.RegisterType<SignInWindow>();
@@ -25,6 +28,8 @@ namespace YoungMomsAssistant.UI {
                 () => container.Resolve<SignInWindow>(),
                 () => container.Resolve<SignUpWindow>()
             ));
+
+            container.RegisterInstance(container.Resolve<TemplatesNavigationService>());
 
             var signInWindow = container.Resolve<SignInWindow>();
             signInWindow.Show();

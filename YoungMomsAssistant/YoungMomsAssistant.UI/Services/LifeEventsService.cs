@@ -1,0 +1,90 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Net;
+using System.Threading.Tasks;
+using YoungMomsAssistant.UI.Infrastructure.Exceptions;
+using YoungMomsAssistant.UI.Models;
+
+namespace YoungMomsAssistant.UI.Services {
+    public class LifeEventsService : ILifeEventsService {
+        IRequestJwtTokensDecorator _requestJwtTokensDecorator;
+
+        public LifeEventsService(IRequestJwtTokensDecorator requestJwtTokensDecorator) {
+            _requestJwtTokensDecorator = requestJwtTokensDecorator;
+        }
+
+        public async Task<List<LifeEvent>> GetAllAsync() {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/";
+            var result = await _requestJwtTokensDecorator.GetAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.OK) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<LifeEvent>>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotOkResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task<List<LifeEvent>> GetByDateAsync(DateTime date) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/{date.Day}/{date.Month}/{date.Year}";
+            var result = await _requestJwtTokensDecorator.GetAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.OK) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<LifeEvent>>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotOkResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task<LifeEvent> AddAsync(LifeEvent lifeEvent) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/Add";
+            var result = await _requestJwtTokensDecorator.PostAsync(url, lifeEvent);
+
+            if (result.StatusCode == HttpStatusCode.Created) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<LifeEvent>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotCreatedResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task UpdateAsync(LifeEvent lifeEvent) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/Update";
+            var result = await _requestJwtTokensDecorator.PutAsync(url, lifeEvent);
+
+            if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else if (result.StatusCode != HttpStatusCode.OK) {
+                throw new NotOkResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task DeleteAsync(int id) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/Delete/{id}";
+            var result = await _requestJwtTokensDecorator.DeleteAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else if (result.StatusCode != HttpStatusCode.NoContent) {
+                throw new NotNoContentResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+    }
+}

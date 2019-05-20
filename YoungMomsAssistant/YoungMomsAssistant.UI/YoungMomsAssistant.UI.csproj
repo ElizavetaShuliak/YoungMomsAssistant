@@ -74,33 +74,73 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\RegexConstants.cs" />
-    <Compile Include="CustomControls\ErrorDialogContent.xaml.cs">
+    <Compile Include="Infrastructure\Converters\BytesToImageConvert.cs" />
+    <Compile Include="Infrastructure\Converters\ErrorToIsEnabledConvert.cs" />
+    <Compile Include="Infrastructure\Converters\NullToCollapsedConvert.cs" />
+    <Compile Include="Infrastructure\Converters\NullToFalseConvert.cs" />
+    <Compile Include="Infrastructure\Converters\SexConvert.cs" />
+    <Compile Include="Infrastructure\Exceptions\NotCreatedResponseException.cs" />
+    <Compile Include="Infrastructure\Exceptions\NotNoContentResponseException.cs" />
+    <Compile Include="Models\LifeEvent.cs" />
+    <Compile Include="Services\IBabiesService.cs" />
+    <Compile Include="Services\ILifeEventsService.cs" />
+    <Compile Include="Services\LifeEventsService.cs" />
+    <Compile Include="ViewModels\AllBabiesViewModel.cs" />
+    <Compile Include="ViewModels\BabyDetailsViewModel.cs" />
+    <Compile Include="ViewModels\LifeEventsViewModel.cs" />
+    <Compile Include="Views\CustomControls\AllBabiesControl.xaml.cs">
+      <DependentUpon>AllBabiesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\BabyDetailsControl.xaml.cs">
+      <DependentUpon>BabyDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\ErrorDialogContent.xaml.cs">
       <DependentUpon>ErrorDialogContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Commands\Generic\RelayCommand.cs" />
     <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
+    <Compile Include="Infrastructure\Exceptions\AuthorizationException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotOkResponseException.cs" />
     <Compile Include="Infrastructure\Extensions\HttpClientExtansions.cs" />
     <Compile Include="Infrastructure\Extensions\RegexExtansions.cs" />
+    <Compile Include="Models\Baby.cs" />
     <Compile Include="Models\JwtTokens.cs" />
     <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\AuthorizationTokensService.cs" />
+    <Compile Include="Services\BabiesService.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IAuthorizationTokensService.cs" />
+    <Compile Include="Services\IRequestJwtTokensDecorator.cs" />
+    <Compile Include="Services\RequestJwtTokensDecorator.cs" />
     <Compile Include="Services\TemplatesNavigationService.cs" />
     <Compile Include="Services\WindowsService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SignInViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\CustomControls\LifeEventsControl.xaml.cs">
+      <DependentUpon>LifeEventsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ICloseable.cs" />
     <Compile Include="Views\Windows\SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomControls\ErrorDialogContent.xaml">
+    <Page Include="Views\CustomControls\AllBabiesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\BabyDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\ErrorDialogContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\LifeEventsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

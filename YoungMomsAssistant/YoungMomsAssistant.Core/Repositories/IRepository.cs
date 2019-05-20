@@ -11,6 +11,8 @@ namespace YoungMomsAssistant.Core.Repositories {
 
         Task<TModel> FindAsync(Expression<Func<TModel, bool>> predicate);
 
+        Task<List<TModel>> FindAllAsync(Expression<Func<TModel, bool>> predicate);
+
         Task AddAsync(TModel model);
 
         Task UpdateAsync(TModel model);

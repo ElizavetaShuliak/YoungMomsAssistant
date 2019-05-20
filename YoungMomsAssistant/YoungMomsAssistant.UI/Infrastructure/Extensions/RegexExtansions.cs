@@ -15,5 +15,9 @@ namespace YoungMomsAssistant.UI.Infrastructure.Extensions {
         public static bool IsMatchPassword(string input) {
             return input != null && Regex.IsMatch(input, RegexConstants.Password);
         }
+
+        public static bool IsMatchName(string input) {
+            return input != null && Regex.IsMatch(input, RegexConstants.Name);
+        }
     }
 }

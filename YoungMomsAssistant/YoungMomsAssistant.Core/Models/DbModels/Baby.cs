@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YoungMomsAssistant.Core.Models.DbModels {
     public class Baby {
@@ -23,6 +24,10 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
 
         [Required]
         public string BloodType { get; set; }
+
+        [ForeignKey("Image")]
+        public int Image_Id { get; set; }
+        public Image Image { get; set; }
 
         public ICollection<UserBaby> Users { get; set; }
 

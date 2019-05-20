@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using YoungMomsAssistant.Core.DbContexts;
@@ -35,13 +36,14 @@ namespace YoungMomsAssistant.Core.Repositories {
         public async Task<List<Baby>> GetAsync() => await _babies.ToListAsync();
 
         public async Task UpdateAsync(Baby model) {
-            _babies.Attach(model);
-
-            _dbContext.Entry(model).State = EntityState.Modified;
+            _babies.Update(model);
             await _dbContext.SaveChangesAsync();
         }
 
         public Task<Baby> FindAsync(Expression<Func<Baby, bool>> predicate)
-            => _babies.FirstOrDefaultAsync(predicate);
+            => _babies.Include("Users").Include("Image").FirstOrDefaultAsync(predicate);
+
+        public Task<List<Baby>> FindAllAsync(Expression<Func<Baby, bool>> predicate)
+            => _babies.Include("Users").Include("Image").Where(predicate).ToListAsync();
     }
 }
