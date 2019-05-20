@@ -189,7 +189,7 @@
                                         HorizontalAlignment="Center"
                                         Command="{Binding AddNewLifeEventCommand}"
                                         IsEnabled="{Binding IsAddedComplete}">
-                                        Add
+                                        Add new
                                     </Button>
                                 </StackPanel>
                             </Grid>
@@ -284,6 +284,13 @@
                                         </Button>
                                     </Grid>
                                     <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                                        <Button
+                                            Command="{Binding DeleteLifeEventCommand}"
+                                            Foreground="Red"
+                                            IsEnabled="{Binding IsDeleteComlete}"
+                                            Style="{StaticResource MaterialDesignFlatButton}">
+                                            Delete
+                                        </Button>
                                         <Button Command="{Binding CancelEditLifeEventCommand}" Style="{StaticResource MaterialDesignFlatButton}">Cancel</Button>
                                         <Button
                                             Margin="10,0,0,0"

@@ -69,11 +69,23 @@ namespace YoungMomsAssistant.UI.Services {
             var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/Update";
             var result = await _requestJwtTokensDecorator.PutAsync(url, lifeEvent);
 
-            if (result.StatusCode != HttpStatusCode.OK) {
+            if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else if (result.StatusCode != HttpStatusCode.OK) {
                 throw new NotOkResponseException(((int)result.StatusCode).ToString());
             }
-            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+        }
+
+        public async Task DeleteAsync(int id) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/LifeEvents/Delete/{id}";
+            var result = await _requestJwtTokensDecorator.DeleteAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.Unauthorized) {
                 throw new AuthorizationException();
+            }
+            else if (result.StatusCode != HttpStatusCode.NoContent) {
+                throw new NotNoContentResponseException(((int)result.StatusCode).ToString());
             }
         }
     }
