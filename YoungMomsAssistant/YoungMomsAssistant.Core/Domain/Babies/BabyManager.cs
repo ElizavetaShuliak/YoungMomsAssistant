@@ -112,7 +112,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             }
         }
 
-        public async Task AddBabyGrowthsAsync(BabyGrowthDto babyGrowthDto, ClaimsPrincipal claimsPrincipal) {
+        public async Task<BabyGrowthDto> AddBabyGrowthsAsync(BabyGrowthDto babyGrowthDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
@@ -127,6 +127,9 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 };
 
                 await _babyGrowthsRepo.AddAsync(babyGrowth);
+                babyGrowthDto.Id = babyGrowth.Id;
+
+                return babyGrowthDto;
             }
             else {
                 throw new ArgumentException("claimsPrincipal");
@@ -148,7 +151,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 });
         }
 
-        public async Task AddBabyWeightsAsync(BabyWeightDto babyWeightDto, ClaimsPrincipal claimsPrincipal) {
+        public async Task<BabyWeightDto> AddBabyWeightsAsync(BabyWeightDto babyWeightDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
@@ -163,6 +166,9 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 };
 
                 await _babyWeightsRepo.AddAsync(babyWeight);
+                babyWeightDto.Id = babyWeight.Id;
+
+                return babyWeightDto;
             }
             else {
                 throw new ArgumentException("claimsPrincipal");

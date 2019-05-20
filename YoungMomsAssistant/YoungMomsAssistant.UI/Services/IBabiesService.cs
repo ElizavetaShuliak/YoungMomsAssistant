@@ -5,8 +5,12 @@ using YoungMomsAssistant.UI.Models;
 namespace YoungMomsAssistant.UI.Services {
     public interface IBabiesService {
         Task<Baby> AddAsync(Baby baby);
+        Task<BabyGrowth> AddGrowthAsync(BabyGrowth baby);
+        Task<BabyWeight> AddWeightAsync(BabyWeight baby);
         Task DeleteAsync(int id);
         Task<List<Baby>> GetAllAsync();
+        Task<List<BabyGrowth>> GetGrowthsAsync();
+        Task<List<BabyWeight>> GetWeightsAsync();
         Task UpdateAsync(Baby baby);
     }
 }
