@@ -25,7 +25,7 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
             _imagesRepo = iamgesRepo;
         }
 
-        public async Task AddNewLifeEventAsync(LifeEventDto lifeEventDto, ClaimsPrincipal claimsPrincipal) {
+        public async Task<LifeEventDto> AddNewLifeEventAsync(LifeEventDto lifeEventDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
@@ -44,6 +44,9 @@ namespace YoungMomsAssistant.Core.Domain.LifeEvents {
             };
 
             await _LifeEventsRepo.AddAsync(lifeEvent);
+            lifeEventDto.Id = lifeEvent.Id;
+
+            return lifeEventDto;
         }
 
         public async Task<IEnumerable<LifeEventDto>> GetLifeEventsByUserAsync(ClaimsPrincipal claimsPrincipal) {

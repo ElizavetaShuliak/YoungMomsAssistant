@@ -338,6 +338,7 @@
                                 Margin="0,0,0,10"
                                 HorizontalAlignment="Center"
                                 Command="{Binding AddNewBabyCommand}"
+                                IsEnabled="{Binding IsAddingComlete}"
                                 Style="{StaticResource MaterialDesignFlatButton}">
                                 Add New
                             </Button>

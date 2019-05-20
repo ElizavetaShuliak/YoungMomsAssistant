@@ -33,7 +33,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             _imagesRepo = imagesRepo;
         }
 
-        public async Task AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal) {
+        public async Task<BabyDto> AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
@@ -52,6 +52,9 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             } };
 
             await _babiesRepo.AddAsync(baby);
+            babyDto.Id = baby.Id;
+
+            return babyDto;
         }
 
         public async Task DeleteBabyAsync(int babyId, ClaimsPrincipal claimsPrincipal) {

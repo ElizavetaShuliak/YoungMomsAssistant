@@ -31,9 +31,9 @@ namespace YoungMomsAssistant.WebApi.Controllers {
         [HttpPost("Add")]
         [Authorize]
         public async Task<ActionResult> Add([FromBody] BabyDto babyDto) {
-             await _babyManager.AddNewBabyAsync(babyDto, HttpContext.User);
+             var result = await _babyManager.AddNewBabyAsync(babyDto, HttpContext.User);
 
-            return Ok();
+            return CreatedAtAction("Add", result);
         }
 
         [HttpPut("Update")]
@@ -49,7 +49,7 @@ namespace YoungMomsAssistant.WebApi.Controllers {
         public async Task<ActionResult> Delete(int id) {
             await _babyManager.DeleteBabyAsync(id, HttpContext.User);
 
-            return Ok();
+            return NoContent();
         }
     }
 }

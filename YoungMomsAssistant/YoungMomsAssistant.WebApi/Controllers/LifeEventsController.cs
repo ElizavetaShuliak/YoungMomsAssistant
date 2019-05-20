@@ -38,9 +38,8 @@ namespace YoungMomsAssistant.WebApi.Controllers {
         [HttpPost("Add")]
         [Authorize]
         public async Task<ActionResult> Add([FromBody] LifeEventDto lifeEventDto) {
-            await _lifeEventManager.AddNewLifeEventAsync(lifeEventDto, HttpContext.User);
-
-            return Ok();
+            var result = await _lifeEventManager.AddNewLifeEventAsync(lifeEventDto, HttpContext.User);
+            return CreatedAtAction("Add", result);
         }
 
         [HttpPut("Update")]

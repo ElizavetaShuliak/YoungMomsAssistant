@@ -21,7 +21,8 @@ namespace YoungMomsAssistant.UI.ViewModels {
         private ObservableCollection<Baby> _babies;
         private Baby _babyToAdd;
 
-        private bool _isUpdateListComplete;
+        private bool _isUpdateListComplete = true;
+        private bool _isAddingComlete = true;
         private string _imageToAddPath;
 
         private TemplatesNavigationService _navigationService;
@@ -77,6 +78,14 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
+        public bool IsAddingComlete {
+            get => _isAddingComlete;
+            set {
+                _isAddingComlete = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string ImageToAddPath {
             get => _imageToAddPath;
             set {
@@ -108,9 +117,14 @@ namespace YoungMomsAssistant.UI.ViewModels {
         public async Task DeleteBabyAsync(Baby baby) {
             try {
                 await _babiesService.DeleteAsync(baby.Id);
-                UpdateListCommand?.Execute(null);
+
+                var babyToRemove = Babies.FirstOrDefault(b => b.Id == baby.Id);
+
+                if (babyToRemove != null) {
+                    Babies.Remove(babyToRemove);
+                }
             }
-            catch (NotOkResponseException ex) {
+            catch (NotNoContentResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
             }
             catch (AuthorizationException ex) {
@@ -129,12 +143,13 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private async void AddNewBabyCommandExecute(object obj) {
             try {
-                await _babiesService.AddAsync(BabyToAdd);
-                UpdateListCommand?.Execute(null);
+                IsAddingComlete = false;
+                var addedBaby = await _babiesService.AddAsync(BabyToAdd);
+                Babies.Add(addedBaby);
                 BabyToAdd = null;
                 ImageToAddPath = null;
             }
-            catch (NotOkResponseException ex) {
+            catch (NotCreatedResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
             }
             catch (AuthorizationException ex) {
@@ -146,6 +161,9 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
             catch {
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
+            }
+            finally {
+                IsAddingComlete = true;
             }
         }
 
@@ -193,7 +211,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                             ImageToAddPath = openFileDialog.FileName;
                         }
                         else {
-                            byte[] bytes; 
+                            byte[] bytes;
                             await stream.ReadAsync(bytes = new byte[(int)stream.Length], 0, (int)stream.Length);
                             obj.Image = bytes;
                         }

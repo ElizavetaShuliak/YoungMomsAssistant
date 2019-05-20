@@ -4,7 +4,7 @@ using YoungMomsAssistant.UI.Models;
 
 namespace YoungMomsAssistant.UI.Services {
     public interface ILifeEventsService {
-        Task AddAsync(LifeEvent lifeEvent);
+        Task<LifeEvent> AddAsync(LifeEvent lifeEvent);
         Task<List<LifeEvent>> GetAllAsync();
         Task<List<LifeEvent>> GetByDateAsync(System.DateTime date);
         Task UpdateAsync(LifeEvent lifeEvent);

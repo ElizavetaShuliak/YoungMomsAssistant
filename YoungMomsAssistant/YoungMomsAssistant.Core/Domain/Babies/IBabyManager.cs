@@ -5,7 +5,7 @@ using YoungMomsAssistant.Core.Models.DtoModels;
 
 namespace YoungMomsAssistant.Core.Domain.Babies {
     public interface IBabyManager {
-        Task AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal);
+        Task<BabyDto> AddNewBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal);
         Task DeleteBabyAsync(int babyId, ClaimsPrincipal claimsPrincipal);
         Task<IEnumerable<BabyDto>> GetBabiesByUserAsync(ClaimsPrincipal claimsPrincipal);
         Task UpdateBabyAsync(BabyDto babyDto, ClaimsPrincipal claimsPrincipal);

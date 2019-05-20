@@ -79,6 +79,8 @@
     <Compile Include="Infrastructure\Converters\NullToCollapsedConvert.cs" />
     <Compile Include="Infrastructure\Converters\NullToFalseConvert.cs" />
     <Compile Include="Infrastructure\Converters\SexConvert.cs" />
+    <Compile Include="Infrastructure\Exceptions\NotCreatedResponseException.cs" />
+    <Compile Include="Infrastructure\Exceptions\NotNoContentResponseException.cs" />
     <Compile Include="Models\LifeEvent.cs" />
     <Compile Include="Services\IBabiesService.cs" />
     <Compile Include="Services\ILifeEventsService.cs" />
