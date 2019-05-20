@@ -4,7 +4,7 @@
         public const string Audience = "YoungMomsAssistant.App";
         public const string Issuer = "YoungMomsAssistant.WebApi";
         public const string JwtSchemeName = "JwtBearer";
-        public const int LifeTimeMins = 5;
+        public const int LifeTimeMins = 1;
         public const int ClockSkew = 5;
     }
 }

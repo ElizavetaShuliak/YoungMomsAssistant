@@ -30,6 +30,7 @@ namespace YoungMomsAssistant.UI.Services {
                 else {
                     await _authorizationTokensService.RefreshTokenAsync();
                     AddAuthorizationHeader(httpClient);
+                    content = new StringContent(jsonRequestString, Encoding.UTF8, "application/json");
                     return await httpClient.PostAsync(url, content);
                 }
             }
@@ -66,6 +67,7 @@ namespace YoungMomsAssistant.UI.Services {
                 else {
                     await _authorizationTokensService.RefreshTokenAsync();
                     AddAuthorizationHeader(httpClient);
+                    content = new StringContent(jsonRequestString, Encoding.UTF8, "application/json");
                     return await httpClient.PutAsync(url, content);
                 }
             }

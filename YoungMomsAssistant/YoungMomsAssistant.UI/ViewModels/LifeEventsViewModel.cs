@@ -25,7 +25,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
         private string _imageToAddPath;
         private string _imageToEditPath;
         private bool _isUpdateListComplete = true;
-        private bool _isAddComlete = true;
+        private bool _isAddComplete = true;
         private bool _isUpdateComlete = true;
         private bool _isDeleteComlete = true;
         private ObservableCollection<LifeEvent> _lifeEvents;
@@ -113,15 +113,15 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public bool IsAddComlete {
-            get => _isAddComlete;
+        public bool IsAddComplete {
+            get => _isAddComplete;
             set {
-                _isAddComlete = value;
+                _isAddComplete = value;
                 OnPropertyChanged();
             }
         }
 
-        public bool IsUpdateComlete {
+        public bool IsUpdateComplete {
             get => _isUpdateComlete;
             set {
                 _isUpdateComlete = value;
@@ -129,7 +129,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public bool IsDeleteComlete {
+        public bool IsDeleteComplete {
             get => _isDeleteComlete;
             set {
                 _isDeleteComlete = value;
@@ -141,7 +141,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private async void AddNewLifeEventCommandExecute(object obj) {
             try {
-                IsAddComlete = false;
+                IsAddComplete = false;
                 var addedLifeEvent = await _lifeEventsService.AddAsync(LifeEventToAdd);
                 if (SelectedDate.Date == addedLifeEvent.Date?.Date) {
                     LifeEvents.Add(addedLifeEvent);
@@ -160,11 +160,11 @@ namespace YoungMomsAssistant.UI.ViewModels {
             catch (HttpRequestException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred", "dialogHost");
             }
-            catch {
+            catch (Exception e){
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
             }
             finally {
-                IsAddComlete = true;
+                IsAddComplete = true;
             }
         }
 
@@ -204,7 +204,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private async void UpdateLifeEventCommandExecute(object obj) {
             try {
-                IsUpdateComlete = false;
+                IsUpdateComplete = false;
                 await _lifeEventsService.UpdateAsync(LifeEventToEdit);
 
                 if (SelectedDate.Date != LifeEventToEdit.Date?.Date) {
@@ -233,7 +233,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
             }
             finally {
-                IsUpdateComlete = true;
+                IsUpdateComplete = true;
             }
         }
 
@@ -274,7 +274,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private async void DeleteLifeEventCommandExecute(object obj) {
             try {
-                IsDeleteComlete = false;
+                IsDeleteComplete = false;
                 await _lifeEventsService.DeleteAsync(LifeEventToEdit.Id);
 
                 var liveEventToRemove = LifeEvents
@@ -301,7 +301,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
             }
             finally {
-                IsDeleteComlete = true;
+                IsDeleteComplete = true;
             }
         }
 

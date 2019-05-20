@@ -22,7 +22,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
         private Baby _babyToAdd;
 
         private bool _isUpdateListComplete = true;
-        private bool _isAddComlete = true;
+        private bool _isAddComplete = true;
         private string _imageToAddPath;
 
         private TemplatesNavigationService _navigationService;
@@ -78,10 +78,10 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        public bool IsAddComlete {
-            get => _isAddComlete;
+        public bool IsAddComplete {
+            get => _isAddComplete;
             set {
-                _isAddComlete = value;
+                _isAddComplete = value;
                 OnPropertyChanged();
             }
         }
@@ -142,7 +142,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
         private async void AddNewBabyCommandExecute(object obj) {
             try {
-                IsAddComlete = false;
+                IsAddComplete = false;
                 var addedBaby = await _babiesService.AddAsync(BabyToAdd);
                 Babies.Add(addedBaby);
                 BabyToAdd = null;
@@ -162,7 +162,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
             }
             finally {
-                IsAddComlete = true;
+                IsAddComplete = true;
             }
         }
 
