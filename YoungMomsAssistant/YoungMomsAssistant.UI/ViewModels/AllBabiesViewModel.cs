@@ -97,7 +97,6 @@ namespace YoungMomsAssistant.UI.ViewModels {
         public async Task UpdateBabyDetailsAsync(Baby baby) {
             try {
                 await _babiesService.UpdateAsync(baby);
-                UpdateListCommand?.Execute(null);
             }
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
