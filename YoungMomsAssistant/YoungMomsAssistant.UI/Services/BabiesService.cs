@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using YoungMomsAssistant.UI.Infrastructure.Exceptions;
 using YoungMomsAssistant.UI.Models;
@@ -54,7 +51,7 @@ namespace YoungMomsAssistant.UI.Services {
             var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Update";
             var result = await _requestJwtTokensDecorator.PutAsync(url, baby);
 
-           
+
             if (result.StatusCode == HttpStatusCode.Unauthorized) {
                 throw new AuthorizationException();
             }
@@ -67,7 +64,7 @@ namespace YoungMomsAssistant.UI.Services {
             var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Delete/{id}";
             var result = await _requestJwtTokensDecorator.DeleteAsync(url);
 
-            
+
             if (result.StatusCode == HttpStatusCode.Unauthorized) {
                 throw new AuthorizationException();
             }

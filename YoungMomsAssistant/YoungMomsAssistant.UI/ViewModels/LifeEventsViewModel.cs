@@ -1,15 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using YoungMomsAssistant.UI.Infrastructure.Commands;
 using YoungMomsAssistant.UI.Infrastructure.Commands.Generic;
@@ -160,7 +155,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             catch (HttpRequestException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred", "dialogHost");
             }
-            catch (Exception e){
+            catch (Exception e) {
                 await _windowsService.OpenErrorDialogAsync("An unexpected error has occurred", "dialogHost");
             }
             finally {
@@ -217,7 +212,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 }
 
                 LifeEventToEdit = null;
-                ImageToEditPath = null;    
+                ImageToEditPath = null;
             }
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");

@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace YoungMomsAssistant.WebApi.Migrations
-{
-    public partial class AddImageToBaby : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace YoungMomsAssistant.WebApi.Migrations {
+    public partial class AddImageToBaby : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.AddColumn<int>(
                 name: "Image_Id",
                 table: "Babies",
@@ -26,8 +23,7 @@ namespace YoungMomsAssistant.WebApi.Migrations
                 onDelete: ReferentialAction.Cascade);
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropForeignKey(
                 name: "FK_Babies_Images_Image_Id",
                 table: "Babies");

@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using Unity;
 using YoungMomsAssistant.UI.Services;
-using YoungMomsAssistant.UI.Views.CustomControls;
 using YoungMomsAssistant.UI.Views.Windows;
 
 namespace YoungMomsAssistant.UI {

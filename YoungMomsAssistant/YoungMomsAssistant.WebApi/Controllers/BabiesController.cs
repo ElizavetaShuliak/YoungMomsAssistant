@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using YoungMomsAssistant.Core.Domain.Babies;
 using YoungMomsAssistant.Core.Models.DtoModels;
-using YoungMomsAssistant.WebApi.Services.JWT;
 
 namespace YoungMomsAssistant.WebApi.Controllers {
     [Route("api/[controller]")]
@@ -31,7 +27,7 @@ namespace YoungMomsAssistant.WebApi.Controllers {
         [HttpPost("Add")]
         [Authorize]
         public async Task<ActionResult> Add([FromBody] BabyDto babyDto) {
-             var result = await _babyManager.AddNewBabyAsync(babyDto, HttpContext.User);
+            var result = await _babyManager.AddNewBabyAsync(babyDto, HttpContext.User);
 
             return CreatedAtAction("Add", result);
         }

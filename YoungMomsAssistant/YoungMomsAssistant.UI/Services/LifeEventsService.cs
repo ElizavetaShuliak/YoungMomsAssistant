@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using YoungMomsAssistant.UI.Infrastructure.Exceptions;
 using YoungMomsAssistant.UI.Models;

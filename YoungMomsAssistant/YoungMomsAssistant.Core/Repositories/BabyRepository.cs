@@ -43,7 +43,7 @@ namespace YoungMomsAssistant.Core.Repositories {
         public Task<Baby> FindAsync(Expression<Func<Baby, bool>> predicate)
             => _babies.Include("Users").Include("Image").FirstOrDefaultAsync(predicate);
 
-        public Task<List<Baby>> FindAllAsync(Expression<Func<Baby, bool>> predicate) 
+        public Task<List<Baby>> FindAllAsync(Expression<Func<Baby, bool>> predicate)
             => _babies.Include("Users").Include("Image").Where(predicate).ToListAsync();
     }
 }

@@ -102,7 +102,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 babyDb.BloodType = babyDto.BloodType;
 
                 if (babyDto.IsImageChanged) {
-                    babyDb.Image = new Image { Source = babyDto.Image};
+                    babyDb.Image = new Image { Source = babyDto.Image };
                 }
 
                 await _babiesRepo.UpdateAsync(babyDb);
