@@ -72,5 +72,69 @@ namespace YoungMomsAssistant.UI.Services {
                 throw new NotNoContentResponseException(((int)result.StatusCode).ToString());
             }
         }
+
+        public async Task<List<BabyWeight>> GetWeightsAsync(int id) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Weights/{id}";
+            var result = await _requestJwtTokensDecorator.GetAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.OK) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<BabyWeight>>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotOkResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task<BabyWeight> AddWeightAsync(BabyWeight weight) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Weights/Add";
+            var result = await _requestJwtTokensDecorator.PostAsync(url, weight);
+
+            if (result.StatusCode == HttpStatusCode.Created) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<BabyWeight>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotCreatedResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task<List<BabyGrowth>> GetGrowthsAsync(int id) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Growths/{id}";
+            var result = await _requestJwtTokensDecorator.GetAsync(url);
+
+            if (result.StatusCode == HttpStatusCode.OK) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<BabyGrowth>>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotOkResponseException(((int)result.StatusCode).ToString());
+            }
+        }
+
+        public async Task<BabyGrowth> AddGrowthAsync(BabyGrowth growth) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Growths/Add";
+            var result = await _requestJwtTokensDecorator.PostAsync(url, growth);
+
+            if (result.StatusCode == HttpStatusCode.Created) {
+                var jsonContentString = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<BabyGrowth>(jsonContentString);
+            }
+            else if (result.StatusCode == HttpStatusCode.Unauthorized) {
+                throw new AuthorizationException();
+            }
+            else {
+                throw new NotCreatedResponseException(((int)result.StatusCode).ToString());
+            }
+        }
     }
 }

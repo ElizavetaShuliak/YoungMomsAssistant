@@ -44,5 +44,13 @@ namespace YoungMomsAssistant.UI.Views.CustomControls {
                 button.IsEnabled = true;
             }
         }
+
+        public void OpenCharts_Click(object sender, RoutedEventArgs e) {
+            if (sender is Button button) {
+                if (button.DataContext is Baby baby) {
+                    ViewModel?.OpenBabyCharts(baby);
+                }
+            }
+        }
     }
 }

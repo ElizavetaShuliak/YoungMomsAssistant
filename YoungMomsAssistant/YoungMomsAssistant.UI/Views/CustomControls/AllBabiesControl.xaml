@@ -47,7 +47,22 @@
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <md:ColorZone VerticalAlignment="Stretch" Mode="PrimaryLight">
+                                <Button
+                                    Grid.Row="0"
+                                    Width="40"
+                                    Height="40"
+                                    Margin="5,5"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Panel.ZIndex="1"
+                                    Click="OpenCharts_Click"
+                                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+                                    <md:PackIcon Kind="ChartAreaspline" />
+                                </Button>
+                                <md:ColorZone
+                                    Grid.Row="0"
+                                    VerticalAlignment="Stretch"
+                                    Mode="PrimaryLight">
                                     <Grid>
                                         <md:PackIcon
                                             Width="128"

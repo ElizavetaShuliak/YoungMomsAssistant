@@ -136,6 +136,10 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
+        public void OpenBabyCharts(Baby baby) {
+            _navigationService.NavigateToBabyDetails(baby);
+        }
+
         #region Commands
 
         private async void AddNewBabyCommandExecute(object obj) {

@@ -47,5 +47,38 @@ namespace YoungMomsAssistant.WebApi.Controllers {
 
             return NoContent();
         }
+
+        [HttpGet("Weights/{id}")]
+        [Authorize]
+        public async Task<ActionResult> GetWeights(int id) {
+            var weights = await _babyManager.GetBabyWeigthsAsync(id, HttpContext.User);
+
+            return Ok(weights);
+        }
+
+        [HttpPost("Weights/Add")]
+        [Authorize]
+        public async Task<ActionResult> AddWeight([FromBody] BabyWeightDto babyWeightDto) {
+            var weight = await _babyManager.AddBabyWeightsAsync(babyWeightDto, HttpContext.User);
+
+            return CreatedAtAction("Add", weight);
+        }
+
+
+        [HttpGet("Growths/{id}")]
+        [Authorize]
+        public async Task<ActionResult> GetGrowths(int id) {
+            var growths = await _babyManager.GetBabyGrowthsAsync(id, HttpContext.User);
+
+            return Ok(growths);
+        }
+
+        [HttpPost("Growths/Add")]
+        [Authorize]
+        public async Task<ActionResult> AddGrowth([FromBody] BabyGrowthDto babyGrowthDto) {
+            var growth = await _babyManager.AddBabyGrowthsAsync(babyGrowthDto, HttpContext.User);
+
+            return CreatedAtAction("Add", growth);
+        }
     }
 }

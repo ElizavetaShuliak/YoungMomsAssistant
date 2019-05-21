@@ -112,7 +112,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             }
         }
 
-        public async Task AddBabyGrowthsAsync(BabyGrowthDto babyGrowthDto, ClaimsPrincipal claimsPrincipal) {
+        public async Task<BabyGrowthDto> AddBabyGrowthsAsync(BabyGrowthDto babyGrowthDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
@@ -120,13 +120,26 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 .FindAsync(b => b.Id == babyGrowthDto.BabyId);
 
             if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
-                var babyGrowth = new BabyGrowth {
-                    Baby = babyDb,
-                    Date = babyGrowthDto.Date,
-                    Growth = babyGrowthDto.Growth
-                };
+                var babyGrowthDb = await _babyGrowthsRepo.FindAsync(bg => bg.Date.Date == babyGrowthDto.Date.Date);
 
-                await _babyGrowthsRepo.AddAsync(babyGrowth);
+                if (babyGrowthDb != null) {
+                    babyGrowthDb.Growth = babyGrowthDto.Growth;
+
+                    await _babyGrowthsRepo.UpdateAsync(babyGrowthDb);
+                    babyGrowthDto.Id = babyGrowthDb.Id;
+                }
+                else {
+                    var babyGrowth = new BabyGrowth {
+                        Baby = babyDb,
+                        Date = babyGrowthDto.Date,
+                        Growth = babyGrowthDto.Growth
+                    };
+
+                    await _babyGrowthsRepo.AddAsync(babyGrowth);
+                    babyGrowthDto.Id = babyGrowth.Id;
+                }
+                
+                return babyGrowthDto;
             }
             else {
                 throw new ArgumentException("claimsPrincipal");
@@ -148,7 +161,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 });
         }
 
-        public async Task AddBabyWeightsAsync(BabyWeightDto babyWeightDto, ClaimsPrincipal claimsPrincipal) {
+        public async Task<BabyWeightDto> AddBabyWeightsAsync(BabyWeightDto babyWeightDto, ClaimsPrincipal claimsPrincipal) {
             var email = GetEmailFromPrincipal(claimsPrincipal);
             var owner = await GetOwnerAsync(email);
 
@@ -156,13 +169,26 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 .FindAsync(b => b.Id == babyWeightDto.BabyId);
 
             if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
-                var babyWeight = new BabyWeight {
-                    Baby = babyDb,
-                    Date = babyWeightDto.Date,
-                    Weight = babyWeightDto.Weight
-                };
+                var babyWeightDb = await _babyWeightsRepo.FindAsync(bw => bw.Date.Date == babyWeightDto.Date.Date);
 
-                await _babyWeightsRepo.AddAsync(babyWeight);
+                if (babyWeightDb != null) {
+                    babyWeightDb.Weight = babyWeightDto.Weight;
+
+                    await _babyWeightsRepo.UpdateAsync(babyWeightDb);
+                    babyWeightDto.Id = babyWeightDb.Id;
+                }
+                else {
+                    var babyWeight = new BabyWeight {
+                        Baby = babyDb,
+                        Date = babyWeightDto.Date,
+                        Weight = babyWeightDto.Weight
+                    };
+
+                    await _babyWeightsRepo.AddAsync(babyWeight);
+                    babyWeightDto.Id = babyWeight.Id;
+                }
+
+                return babyWeightDto;
             }
             else {
                 throw new ArgumentException("claimsPrincipal");

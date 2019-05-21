@@ -38,6 +38,12 @@
     <ApplicationIcon>YMAfavicon%28256x256%29.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -82,8 +88,11 @@
     <Compile Include="Infrastructure\Converters\NullToCollapsedConvert.cs" />
     <Compile Include="Infrastructure\Converters\NullToFalseConvert.cs" />
     <Compile Include="Infrastructure\Converters\SexConvert.cs" />
+    <Compile Include="Infrastructure\Converters\StringToDoubleConvert.cs" />
     <Compile Include="Infrastructure\Exceptions\NotCreatedResponseException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotNoContentResponseException.cs" />
+    <Compile Include="Models\BabyGrowth.cs" />
+    <Compile Include="Models\BabyWeight.cs" />
     <Compile Include="Models\LifeEvent.cs" />
     <Compile Include="Services\IBabiesService.cs" />
     <Compile Include="Services\ILifeEventsService.cs" />

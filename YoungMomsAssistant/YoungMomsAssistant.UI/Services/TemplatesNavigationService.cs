@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using YoungMomsAssistant.UI.Models;
+using YoungMomsAssistant.UI.ViewModels;
 using YoungMomsAssistant.UI.Views.CustomControls;
 
 namespace YoungMomsAssistant.UI.Services {
@@ -55,6 +57,9 @@ namespace YoungMomsAssistant.UI.Services {
         [Unity.Dependency]
         public Func<LifeEventsControl> LifeEventsControlFactory { get; set; }
 
+        [Unity.Dependency]
+        public Func<BabyDetailsControl> BabyDetailsControlFactory { get; set; }
+
         public void NavigateToAllBabies() {
             if (CurrentTemplate?.GetType() == typeof(AllBabiesControl)) {
                 return;
@@ -71,6 +76,16 @@ namespace YoungMomsAssistant.UI.Services {
             }
 
             CurrentTemplate = LifeEventsControlFactory?.Invoke();
+
+            AddToNavigationList();
+        }
+
+        public void NavigateToBabyDetails(Baby baby) {
+            CurrentTemplate = BabyDetailsControlFactory?.Invoke();
+
+            if (CurrentTemplate.DataContext is BabyDetailsViewModel viewModel) {
+                viewModel.SelectedBaby = baby;
+            }
 
             AddToNavigationList();
         }
