@@ -34,9 +34,8 @@ namespace YoungMomsAssistant.UI.Models {
 
                 switch (columnName) {
                     case "LoginOrEmail":
-                        if (!RegexExtansions.IsMatchLogin(LoginOrEmail)
-                            && !RegexExtansions.IsMatchEmail(LoginOrEmail)) {
-                            // TODO: Move to constants/localization
+                        if (!RegexExtensions.IsMatchLogin(LoginOrEmail)
+                            && !RegexExtensions.IsMatchEmail(LoginOrEmail)) {
                             error = "error";
                             _errors["LoginOrEmail"] = error;
                         }
@@ -46,8 +45,7 @@ namespace YoungMomsAssistant.UI.Models {
 
                         break;
                     case "Password":
-                        if (!RegexExtansions.IsMatchPassword(Password)) {
-                            // TODO: Move to constants/localization
+                        if (!RegexExtensions.IsMatchPassword(Password)) {
                             error = "error";
                             _errors["Password"] = error;
                         }

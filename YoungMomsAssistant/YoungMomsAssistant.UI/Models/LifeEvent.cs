@@ -54,7 +54,6 @@ namespace YoungMomsAssistant.UI.Models {
                 switch (columnName) {
                     case "Title":
                         if (string.IsNullOrWhiteSpace(Title) || Title.Length > 255) {
-                            // TODO: Move to constants/localization
                             error = "error";
                             _errors["Title"] = error;
                         }
@@ -64,7 +63,6 @@ namespace YoungMomsAssistant.UI.Models {
                         break;
                     case "Summary":
                         if (Summary != null && Summary.Length > 1000) {
-                            // TODO: Move to constants/localization
                             error = "error";
                             _errors["Summary"] = error;
                         }
@@ -82,7 +80,7 @@ namespace YoungMomsAssistant.UI.Models {
                         }
                         break;
                     case "Date":
-                        if (Date == null) {
+                        if (Date == null || DateTime.Now.Date < Date.Value) {
                             error = "error";
                             _errors["Date"] = error;
                         }

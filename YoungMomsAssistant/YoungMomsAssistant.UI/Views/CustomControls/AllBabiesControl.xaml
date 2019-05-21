@@ -181,8 +181,15 @@
                                             Margin="10,0,0,0"
                                             VerticalAlignment="Bottom"
                                             md:HintAssist.Hint="Pick Date"
-                                            SelectedDate="{Binding Path=BirthDay}"
-                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                            Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                            <DatePicker.SelectedDate>
+                                                <Binding Path="BirthDay" UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <DataErrorValidationRule />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </DatePicker.SelectedDate>
+                                        </DatePicker>
                                     </Grid>
                                 </StackPanel>
                                 <Grid Grid.Row="2" Margin="20,10">
@@ -318,8 +325,15 @@
                                         VerticalAlignment="Bottom"
                                         md:HintAssist.Hint="Pick Date"
                                         DataContext="{Binding BabyToAdd}"
-                                        SelectedDate="{Binding Path=BirthDay}"
-                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="BirthDay" UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <DataErrorValidationRule />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
                                 </Grid>
                             </StackPanel>
                             <Grid Grid.Row="2" Margin="20,10">

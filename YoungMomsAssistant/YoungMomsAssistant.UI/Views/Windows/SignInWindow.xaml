@@ -37,7 +37,8 @@
                 Margin="20,10"
                 md:HintAssist.Hint="Password"
                 PasswordChanged="PasswordPb_PasswordChanged"
-                Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}" />
+                Style="{StaticResource MaterialDesignFilledPasswordFieldPasswordBox}"
+                ToolTip="The password must contain at least one of each digital, lower-,upper- case, special character and be at least 6 characters" />
             <Button
                 Margin="20,10"
                 md:ButtonProgressAssist.IsIndeterminate="True"
