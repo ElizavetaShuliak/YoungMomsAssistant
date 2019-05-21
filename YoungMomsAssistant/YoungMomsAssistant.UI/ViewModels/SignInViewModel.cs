@@ -65,7 +65,6 @@ namespace YoungMomsAssistant.UI.ViewModels {
 
                 SignIn(tokens);
             }
-            // TODO: Move errors to localization
             catch (NotOkResponseException ex) {
                 await _windowsService.OpenErrorDialogAsync($"An request error has occurred (code: {ex.Message})", "dialogHost");
             }

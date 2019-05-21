@@ -46,7 +46,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
                 Image = new Image { Source = babyDto.Image }
             };
 
-            baby.Users = new List<UserBaby> { new UserBaby {
+            baby.UserBabies = new List<UserBaby> { new UserBaby {
                 Baby = baby,
                 User = owner
             } };
@@ -63,7 +63,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
 
             var babyDb = await _babiesRepo.FindAsync(b => b.Id == babyId);
 
-            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+            if (babyDb.UserBabies.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
                 await _babiesRepo.RemoveAsync(babyId);
                 await _imagesRepo.RemoveAsync(babyDb.Image_Id);
             }
@@ -77,7 +77,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var owner = await GetOwnerAsync(email);
 
             return (await _babiesRepo
-                .FindAllAsync(baby => baby.Users.FirstOrDefault(ub => ub.Baby_Id == baby.Id && ub.User_Id == owner.Id) != null))
+                .FindAllAsync(baby => baby.UserBabies.FirstOrDefault(ub => ub.Baby_Id == baby.Id && ub.User_Id == owner.Id) != null))
                 .Select(baby => new BabyDto {
                     Id = baby.Id,
                     FirstName = baby.FirstName,
@@ -94,7 +94,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var owner = await GetOwnerAsync(email);
 
             var babyDb = await _babiesRepo.FindAsync(baby => baby.Id == babyDto.Id);
-            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+            if (babyDb.UserBabies.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
                 babyDb.FirstName = babyDto.FirstName;
                 babyDb.LastName = babyDto.LastName;
                 babyDb.Sex = babyDto.Sex;
@@ -119,7 +119,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var babyDb = await _babiesRepo
                 .FindAsync(b => b.Id == babyGrowthDto.BabyId);
 
-            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+            if (babyDb.UserBabies.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
                 var babyGrowthDb = await _babyGrowthsRepo.FindAsync(bg => bg.Date.Date == babyGrowthDto.Date.Date);
 
                 if (babyGrowthDb != null) {
@@ -151,7 +151,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var owner = await GetOwnerAsync(email);
 
             return (await _babyGrowthsRepo
-                .FindAllAsync(bg => bg.Baby.Users
+                .FindAllAsync(bg => bg.Baby.UserBabies
                     .FirstOrDefault(ub => ub.User_Id == owner.Id) != null && bg.Baby_Id == babyId))
                 .Select(bg => new BabyGrowthDto {
                     Date = bg.Date,
@@ -168,7 +168,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var babyDb = await _babiesRepo
                 .FindAsync(b => b.Id == babyWeightDto.BabyId);
 
-            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+            if (babyDb.UserBabies.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
                 var babyWeightDb = await _babyWeightsRepo.FindAsync(bw => bw.Date.Date == babyWeightDto.Date.Date);
 
                 if (babyWeightDb != null) {
@@ -200,7 +200,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var owner = await GetOwnerAsync(email);
 
             return (await _babyWeightsRepo
-                .FindAllAsync(bw => bw.Baby.Users
+                .FindAllAsync(bw => bw.Baby.UserBabies
                     .FirstOrDefault(ub => ub.User_Id == owner.Id) != null && bw.Baby_Id == babyId))
                 .Select(bw => new BabyWeightDto {
                     Date = bw.Date,
@@ -217,7 +217,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var babyDb = await _babiesRepo
                 .FindAsync(b => b.Id == babyVaccinationDto.BabyId);
 
-            if (babyDb.Users.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
+            if (babyDb.UserBabies.FirstOrDefault(ub => ub.User_Id == owner.Id) != null) {
                 var babyVaccination = new BabyVaccination {
                     Baby = babyDb,
                     Date = babyVaccinationDto.Date,
@@ -238,7 +238,7 @@ namespace YoungMomsAssistant.Core.Domain.Babies {
             var owner = await GetOwnerAsync(email);
 
             return (await _babyVaccinationRepo
-                .FindAllAsync(v => v.Baby.Users
+                .FindAllAsync(v => v.Baby.UserBabies
                     .FirstOrDefault(ub => ub.User_Id == owner.Id) != null && v.Baby_Id == babyId))
                 .Select(bw => new BabyVaccinationDto {
                     BabyId = bw.Baby_Id,

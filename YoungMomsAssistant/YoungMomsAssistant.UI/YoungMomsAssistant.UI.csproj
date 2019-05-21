@@ -113,8 +113,8 @@
     <Compile Include="Infrastructure\Commands\RelayCommand.cs" />
     <Compile Include="Infrastructure\Exceptions\AuthorizationException.cs" />
     <Compile Include="Infrastructure\Exceptions\NotOkResponseException.cs" />
-    <Compile Include="Infrastructure\Extensions\HttpClientExtansions.cs" />
-    <Compile Include="Infrastructure\Extensions\RegexExtansions.cs" />
+    <Compile Include="Infrastructure\Extensions\HttpClientExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\RegexExtensions.cs" />
     <Compile Include="Models\Baby.cs" />
     <Compile Include="Models\JwtTokens.cs" />
     <Compile Include="Models\ModelBase.cs" />

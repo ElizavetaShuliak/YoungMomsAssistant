@@ -20,7 +20,6 @@ namespace YoungMomsAssistant.UI.Services {
                     return JsonConvert.DeserializeObject<JwtTokens>(jsonContentString);
                 }
                 else {
-                    // TODO: another exception for wrong user data
                     throw new NotOkResponseException(((int)result.StatusCode).ToString());
                 }
             }
@@ -33,11 +32,9 @@ namespace YoungMomsAssistant.UI.Services {
                 var result = await request.PostWithJsonBodyAsync(url, user);
 
                 if (result.StatusCode == HttpStatusCode.OK) {
-                    // TODO: Improve it
                     return true;
                 }
                 else {
-                    // TODO: another exception for wrong user data
                     throw new NotOkResponseException(((int)result.StatusCode).ToString());
                 }
             }

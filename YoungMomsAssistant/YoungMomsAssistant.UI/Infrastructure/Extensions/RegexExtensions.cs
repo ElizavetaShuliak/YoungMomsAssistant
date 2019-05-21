@@ -2,7 +2,7 @@
 using YoungMomsAssistant.UI.Constants;
 
 namespace YoungMomsAssistant.UI.Infrastructure.Extensions {
-    public static class RegexExtansions {
+    public static class RegexExtensions {
 
         public static bool IsMatchEmail(string input) {
             return input != null && Regex.IsMatch(input, RegexConstants.Email);

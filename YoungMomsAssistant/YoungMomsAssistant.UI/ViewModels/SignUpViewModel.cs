@@ -55,7 +55,6 @@ namespace YoungMomsAssistant.UI.ViewModels {
                 var result = await _authenticationService.SignUpAsync(UserData);
 
                 if (result) {
-                    //TODO: popup
                     _windowsService.NaviagteToSignInWindow(ClosableWindow);
                 }
             }

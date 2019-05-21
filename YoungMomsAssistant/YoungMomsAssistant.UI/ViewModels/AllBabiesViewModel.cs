@@ -36,7 +36,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             _navigationService = navigationService;
             _windowsService = windowsService;
 
-            AddNewBabyCommand = new RelayCommand(AddNewBabyCommandExecute, AddNewBabyCommandCanExecut);
+            AddNewBabyCommand = new RelayCommand(AddNewBabyCommandExecute, AddNewBabyCommandCanExecute);
             UpdateListCommand = new RelayCommand(UpdateListCommandExecute);
             LoadImageCommand = new RelayCommand<Baby>(LoadImageCommandExecute);
 
@@ -168,7 +168,7 @@ namespace YoungMomsAssistant.UI.ViewModels {
             }
         }
 
-        private bool AddNewBabyCommandCanExecut(object obj) {
+        private bool AddNewBabyCommandCanExecute(object obj) {
             return string.IsNullOrWhiteSpace(BabyToAdd["Sex"])
                 && string.IsNullOrWhiteSpace(BabyToAdd["BloodType"])
                 && string.IsNullOrWhiteSpace(BabyToAdd["Image"])

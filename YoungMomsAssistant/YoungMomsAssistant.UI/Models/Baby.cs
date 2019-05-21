@@ -76,7 +76,7 @@ namespace YoungMomsAssistant.UI.Models {
 
                 switch (columnName) {
                     case "FirstName":
-                        if (!RegexExtansions.IsMatchName(FirstName)) {
+                        if (!RegexExtensions.IsMatchName(FirstName)) {
                             error = "error";
                             _errors["FirstName"] = error;
                         }
@@ -85,7 +85,7 @@ namespace YoungMomsAssistant.UI.Models {
                         }
                         break;
                     case "LastName":
-                        if (!RegexExtansions.IsMatchName(LastName)) {
+                        if (!RegexExtensions.IsMatchName(LastName)) {
                             error = "error";
                             _errors["LastName"] = error;
                         }
@@ -118,6 +118,15 @@ namespace YoungMomsAssistant.UI.Models {
                         }
                         else {
                             _errors["Image"] = null;
+                        }
+                        break;
+                    case "BirthDay":
+                        if (DateTime.Now.Date < BirthDay.Date.Date) {
+                            error = "error";
+                            _errors["BirthDay"] = error;
+                        }
+                        else {
+                            _errors["BirthDay"] = null;
                         }
                         break;
                 }
