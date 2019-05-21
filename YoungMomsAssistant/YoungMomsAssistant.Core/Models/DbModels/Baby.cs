@@ -29,7 +29,7 @@ namespace YoungMomsAssistant.Core.Models.DbModels {
         public int Image_Id { get; set; }
         public Image Image { get; set; }
 
-        public ICollection<UserBaby> Users { get; set; }
+        public ICollection<UserBaby> UserBabies { get; set; }
 
         public ICollection<BabyAllergy> BabyAllergies { get; set; }
     }
