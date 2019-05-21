@@ -9,8 +9,8 @@ namespace YoungMomsAssistant.UI.Services {
         Task<BabyWeight> AddWeightAsync(BabyWeight baby);
         Task DeleteAsync(int id);
         Task<List<Baby>> GetAllAsync();
-        Task<List<BabyGrowth>> GetGrowthsAsync();
-        Task<List<BabyWeight>> GetWeightsAsync();
+        Task<List<BabyGrowth>> GetGrowthsAsync(int id);
+        Task<List<BabyWeight>> GetWeightsAsync(int id);
         Task UpdateAsync(Baby baby);
     }
 }

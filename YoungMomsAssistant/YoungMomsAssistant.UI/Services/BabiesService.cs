@@ -73,8 +73,8 @@ namespace YoungMomsAssistant.UI.Services {
             }
         }
 
-        public async Task<List<BabyWeight>> GetWeightsAsync() {
-            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Weights";
+        public async Task<List<BabyWeight>> GetWeightsAsync(int id) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Weights/{id}";
             var result = await _requestJwtTokensDecorator.GetAsync(url);
 
             if (result.StatusCode == HttpStatusCode.OK) {
@@ -105,8 +105,8 @@ namespace YoungMomsAssistant.UI.Services {
             }
         }
 
-        public async Task<List<BabyGrowth>> GetGrowthsAsync() {
-            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Growths";
+        public async Task<List<BabyGrowth>> GetGrowthsAsync(int id) {
+            var url = $@"{ConfigurationSettings.AppSettings["WebApiUrl"]}/Babies/Growths/{id}";
             var result = await _requestJwtTokensDecorator.GetAsync(url);
 
             if (result.StatusCode == HttpStatusCode.OK) {
